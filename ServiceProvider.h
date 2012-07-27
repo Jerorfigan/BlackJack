@@ -1,5 +1,11 @@
 #pragma once
 
+/**********************************/
+/**********************************/
+/* Manages all required services. */
+/**********************************/
+/**********************************/
+
 #include "..\GameUtilities\IGraphicsProvider.h"
 #include "GameError.h"
 
