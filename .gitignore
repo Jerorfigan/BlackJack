@@ -163,5 +163,5 @@ pip-log.txt
 .DS_Store
 
 # Other
-.bmp
-.png
+*.bmp
+*.png
