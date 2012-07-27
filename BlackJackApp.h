@@ -23,17 +23,22 @@ namespace BlackJack
 		/*******************/
 		/* Virtual methods */
 		/*******************/
-	public:
+	private:
+		virtual void InitApp();
+		virtual void InitGraphics();
+
 		virtual void DoFrame();
 
-	private:
-		virtual void InitGraphics();
+		/**************/
+		/* Destructor */
+		/**************/
+	public:
+		virtual ~BlackJackApp();
 
 		/********/
 		/* Data */
 		/********/
 	private:
-		GameUtilities::IGraphicsProvider *m_pGraphicsProvider;
 	};
 
 }

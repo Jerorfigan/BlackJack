@@ -63,6 +63,7 @@ namespace BlackJack
 		/***********/
 		void Application::Init()
 		{
+			InitApp();
 			InitPrimaryWindow();
 			InitGraphics();
 			InitInput();
@@ -114,6 +115,11 @@ namespace BlackJack
 		/*******************/
 		/* Virtual Methods */
 		/*******************/
+		void Application::InitApp()
+		{
+
+		}
+
 		void Application::DoFrame()
 		{
 

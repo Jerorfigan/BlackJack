@@ -17,6 +17,9 @@
     <Filter Include="Application">
       <UniqueIdentifier>{4023b734-4714-44f6-9181-ac43136788ac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ServiceProvider">
+      <UniqueIdentifier>{f11ea47b-9d92-46ac-a78e-14f369efa041}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -43,6 +46,9 @@
     <ClInclude Include="BlackJackApp.h">
       <Filter>Application</Filter>
     </ClInclude>
+    <ClInclude Include="ServiceProvider.h">
+      <Filter>ServiceProvider</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -59,6 +65,9 @@
     </ClCompile>
     <ClCompile Include="BlackJackApp.cpp">
       <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="ServiceProvider.cpp">
+      <Filter>ServiceProvider</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

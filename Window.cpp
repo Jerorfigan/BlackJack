@@ -88,6 +88,12 @@ namespace BlackJack
 		{
 			switch( uMsg )
 			{
+			case WM_CREATE:
+				{
+					m_hWnd = hWnd;
+					return 0;
+				}
+				break;
 			case WM_KEYDOWN:
 				{
 					if( wParam == VK_ESCAPE )
@@ -95,12 +101,6 @@ namespace BlackJack
 						DestroyWindow( hWnd );
 						return 0;
 					}
-				}
-				break;
-			case WM_CREATE:
-				{
-					m_hWnd = hWnd;
-					return 0;
 				}
 				break;
 			case WM_DESTROY:
@@ -146,7 +146,11 @@ namespace BlackJack
 
 	void Window::InitInstance()
 	{
-		DWORD windowStyle = WS_OVERLAPPEDWINDOW | WS_VISIBLE;
+		DWORD windowStyle = WS_OVERLAPPED    | 
+                            WS_CAPTION       | 
+                            WS_SYSMENU       |  
+                            WS_MINIMIZEBOX   | 
+                            WS_MAXIMIZEBOX;
 
 		RECT rc;
 		rc.left = 0;

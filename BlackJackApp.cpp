@@ -3,6 +3,7 @@
 #include "BlackJackApp.h"
 #include "..\GameUtilities\D3DGraphicsProvider.h"
 #include "Window.h"
+#include "ServiceProvider.h"
 
 namespace BlackJack
 {
@@ -24,12 +25,35 @@ namespace BlackJack
 	/*******************/
 	/* Virtual methods */
 	/*******************/
-	void BlackJackApp::DoFrame()
+	
+	/////////////
+	// InitApp //
+	/////////////
+	void 
+	BlackJackApp::InitApp()
+	{
+		ServiceProvider::Create();
+	}
+
+	//////////////////
+	// InitGraphics //
+	//////////////////
+	void 
+	BlackJackApp::InitGraphics()
+	{
+		ServProvider()->RegisterGraphicsProvider( new GameUtilities::D3DGraphicsProvider( GetWnd()->GetHandle(), 1280, 900 ) );
+	}
+
+	/////////////
+	// DoFrame //
+	/////////////
+	void 
+	BlackJackApp::DoFrame()
 	{
 		static bool first = true;
 		static GameUtilities::IGraphicsProvider::SpriteCollectionID spriteCollectionID;
 
-		m_pGraphicsProvider->ClearBackbuffer();
+		ServProvider()->GetGraphicsProvider()->ClearBackbuffer();
 
 		if( first )
 		{
@@ -44,24 +68,28 @@ namespace BlackJack
 			spriteInfo.subrect.right = 0;
 			spriteInfo.subrect.top = 0;
 
-			spriteCollectionID = m_pGraphicsProvider->CreateSpriteCollection();
+			spriteCollectionID = ServProvider()->GetGraphicsProvider()->CreateSpriteCollection();
 
-			m_pGraphicsProvider->AddSprite( spriteCollectionID, "test", spriteInfo );
+			ServProvider()->GetGraphicsProvider()->AddSprite( spriteCollectionID, "test", spriteInfo );
 		}
-		m_pGraphicsProvider->BeginScene();
-		m_pGraphicsProvider->StartSpriteBatch();
+		ServProvider()->GetGraphicsProvider()->BeginScene();
+		ServProvider()->GetGraphicsProvider()->StartSpriteBatch();
 
-		m_pGraphicsProvider->DrawSpriteCollection( spriteCollectionID );
+		ServProvider()->GetGraphicsProvider()->DrawSpriteCollection( spriteCollectionID );
 
-		m_pGraphicsProvider->EndSpriteBatch();
-		m_pGraphicsProvider->EndScene();
+		ServProvider()->GetGraphicsProvider()->EndSpriteBatch();
+		ServProvider()->GetGraphicsProvider()->EndScene();
 
-		m_pGraphicsProvider->Flip();
+		ServProvider()->GetGraphicsProvider()->Flip();
 	}
 
-	void BlackJackApp::InitGraphics()
+	/**************/
+	/* Destructor */
+	/**************/
+	BlackJackApp::~BlackJackApp()
 	{
-		m_pGraphicsProvider = new GameUtilities::D3DGraphicsProvider( GetWnd()->GetHandle(), 1280, 900 );
+		// Destroy service provider.
+		ServiceProvider::Destroy();
 	}
 
 }

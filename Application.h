@@ -42,16 +42,16 @@ namespace BlackJack
 		/*******************/
 		/* Virtual Methods */
 		/*******************/
-	public:
-		virtual void DoFrame();
-		virtual void DoIdleFrame();
-
 	private:
+		virtual void InitApp();
 		virtual void InitPrimaryWindow();
 		virtual void InitGraphics();
 		virtual void InitInput();
 		virtual void InitSound();
 		virtual void InitExtraSubsystems();
+
+		virtual void DoFrame();
+		virtual void DoIdleFrame();
 
 		/**************/
 		/* Destructor */
