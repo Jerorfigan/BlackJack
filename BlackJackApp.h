@@ -26,6 +26,7 @@ namespace BlackJack
 	private:
 		virtual void InitApp();
 		virtual void InitGraphics();
+		virtual void InitInput();
 
 		virtual void DoFrame();
 

@@ -30,6 +30,15 @@ namespace BlackJack
 		m_pGraphicsProvider = pGraphicsProvider;
 	}
 
+	///////////////////////////
+	// RegisterInputProvider //
+	///////////////////////////
+	void								      
+	ServiceProvider::RegisterInputProvider( GameUtilities::IRealTimeInputProvider *pInputProvider )
+	{
+		m_pInputProvider = pInputProvider;
+	}
+
 	/******************/
 	/* Static methods */
 	/******************/
@@ -60,6 +69,8 @@ namespace BlackJack
 	{
 		// Free graphics provider.
 		delete m_pGraphicsProvider;
+		// Free input provider.
+		delete m_pInputProvider;
 	}
 
 	/***************/

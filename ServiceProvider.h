@@ -7,6 +7,7 @@
 /**********************************/
 
 #include "..\GameUtilities\IGraphicsProvider.h"
+#include "..\GameUtilities\IRealTimeInputProvider.h"
 #include "GameError.h"
 
 namespace BlackJack
@@ -24,8 +25,10 @@ namespace BlackJack
 		/* Methods */
 		/***********/
 	public:
-		void								 RegisterGraphicsProvider( GameUtilities::IGraphicsProvider *pGraphicsProvider );
-		GameUtilities::IGraphicsProvider*    GetGraphicsProvider();
+		void								      RegisterGraphicsProvider( GameUtilities::IGraphicsProvider *pGraphicsProvider );
+		GameUtilities::IGraphicsProvider*         GetGraphicsProvider();
+		void								      RegisterInputProvider( GameUtilities::IRealTimeInputProvider *pInputProvider );
+		GameUtilities::IRealTimeInputProvider*    GetInputProvider();
 
 		/**************/
 		/* Destructor */
@@ -37,7 +40,8 @@ namespace BlackJack
 		/* Data */
 		/********/
 	private:
-		GameUtilities::IGraphicsProvider    *m_pGraphicsProvider;
+		GameUtilities::IGraphicsProvider		 *m_pGraphicsProvider;
+		GameUtilities::IRealTimeInputProvider    *m_pInputProvider;
 
 		/******************/
 		/* Static methods */
@@ -65,6 +69,15 @@ namespace BlackJack
 	ServiceProvider::GetGraphicsProvider()
 	{
 		return m_pGraphicsProvider;
+	}
+
+	//////////////////////
+	// GetInputProvider //
+	//////////////////////
+	inline GameUtilities::IRealTimeInputProvider*    
+	ServiceProvider::GetInputProvider()
+	{
+		return m_pInputProvider;
 	}
 
 	/******************/
