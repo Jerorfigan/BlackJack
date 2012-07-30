@@ -5,6 +5,7 @@
 #include "..\GameUtilities\DirectInputInputProvider.h"
 #include "Window.h"
 #include "ServiceProvider.h"
+#include "..\GameUtilities\IRealTimeInputProvider.h"
 
 namespace BlackJack
 {
@@ -98,13 +99,13 @@ namespace BlackJack
 			spriteInfo.scale -= 0.01;
 		if( ServProvider()->GetInputProvider()->IsKeyDown( 'R' ) )
 			spriteInfo.rotation += 3;
-		if( ServProvider()->GetInputProvider()->IsKeyDown( (UINT)VK_RIGHT ) )
+		if( ServProvider()->GetInputProvider()->IsKeyDown( KEY(RightArrow) ) )
 			spriteInfo.position.x += 3.0f;
-		if( ServProvider()->GetInputProvider()->IsKeyDown( (UINT)VK_LEFT ) )
+		if( ServProvider()->GetInputProvider()->IsKeyDown( KEY(LeftArrow) ) )
 			spriteInfo.position.x -= 3.0f;
-		if( ServProvider()->GetInputProvider()->IsKeyDown( (UINT)VK_UP ) )
+		if( ServProvider()->GetInputProvider()->IsKeyDown( KEY(UpArrow) ) )
 			spriteInfo.position.y -= 3.0f;
-		if( ServProvider()->GetInputProvider()->IsKeyDown( (UINT)VK_DOWN ) )
+		if( ServProvider()->GetInputProvider()->IsKeyDown( KEY(DownArrow) ) )
 			spriteInfo.position.y += 3.0f;
 		ServProvider()->GetGraphicsProvider()->SetSprite( spriteCollectionID, "test", spriteInfo );
 
