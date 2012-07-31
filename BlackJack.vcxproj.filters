@@ -20,6 +20,24 @@
     <Filter Include="ServiceProvider">
       <UniqueIdentifier>{f11ea47b-9d92-46ac-a78e-14f369efa041}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameClasses">
+      <UniqueIdentifier>{28670061-f242-4ed8-897b-15c85c416bcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameClasses\Management">
+      <UniqueIdentifier>{acad770d-1829-4928-bd8d-e1ba27bd5952}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameClasses\Management\Config">
+      <UniqueIdentifier>{c089988e-65ab-49c8-b8a5-ee9fffbb27e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameClasses\Visualization">
+      <UniqueIdentifier>{7f2ea25f-3f59-4dcc-b4ab-309df40ce682}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameClasses\Input">
+      <UniqueIdentifier>{3adecb2a-72ce-4687-b63d-78725a247ff0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameClasses\GameLogic">
+      <UniqueIdentifier>{67aafce3-9804-4e6b-b5d7-734613b178b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -49,6 +67,51 @@
     <ClInclude Include="ServiceProvider.h">
       <Filter>ServiceProvider</Filter>
     </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>GameClasses\Management</Filter>
+    </ClInclude>
+    <ClInclude Include="DealerConfiguration.h">
+      <Filter>GameClasses\Management\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="GameConfiguration.h">
+      <Filter>GameClasses\Management\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerConfiguration.h">
+      <Filter>GameClasses\Management\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskManager.h">
+      <Filter>GameClasses\Management</Filter>
+    </ClInclude>
+    <ClInclude Include="GameVisualizer.h">
+      <Filter>GameClasses\Visualization</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerQuerier.h">
+      <Filter>GameClasses\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Card.h">
+      <Filter>GameClasses\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="Deck.h">
+      <Filter>GameClasses\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="Dealer.h">
+      <Filter>GameClasses\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="Hand.h">
+      <Filter>GameClasses\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>GameClasses\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="UserPlayer.h">
+      <Filter>GameClasses\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="AIPlayer.h">
+      <Filter>GameClasses\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="AIDealer.h">
+      <Filter>GameClasses\GameLogic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -68,6 +131,18 @@
     </ClCompile>
     <ClCompile Include="ServiceProvider.cpp">
       <Filter>ServiceProvider</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>GameClasses\Management</Filter>
+    </ClCompile>
+    <ClCompile Include="TaskManager.cpp">
+      <Filter>GameClasses\Management</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerQuerier.cpp">
+      <Filter>GameClasses\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="GameVisualizer.cpp">
+      <Filter>GameClasses\Visualization</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

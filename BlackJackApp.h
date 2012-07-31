@@ -35,11 +35,6 @@ namespace BlackJack
 		/**************/
 	public:
 		virtual ~BlackJackApp();
-
-		/********/
-		/* Data */
-		/********/
-	private:
 	};
 
 }
