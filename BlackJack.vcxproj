@@ -78,7 +78,7 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AIDealer.h" />
+    <ClInclude Include="DealerAI.h" />
     <ClInclude Include="AIPlayer.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="BlackJackApp.h" />
@@ -105,6 +105,8 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="BlackJackApp.cpp" />
+    <ClCompile Include="Dealer.cpp" />
+    <ClCompile Include="DealerAI.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameVisualizer.cpp" />
     <ClCompile Include="Globals.cpp" />

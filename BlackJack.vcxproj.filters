@@ -109,7 +109,7 @@
     <ClInclude Include="AIPlayer.h">
       <Filter>GameClasses\GameLogic</Filter>
     </ClInclude>
-    <ClInclude Include="AIDealer.h">
+    <ClInclude Include="DealerAI.h">
       <Filter>GameClasses\GameLogic</Filter>
     </ClInclude>
   </ItemGroup>
@@ -143,6 +143,12 @@
     </ClCompile>
     <ClCompile Include="GameVisualizer.cpp">
       <Filter>GameClasses\Visualization</Filter>
+    </ClCompile>
+    <ClCompile Include="DealerAI.cpp">
+      <Filter>GameClasses\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="Dealer.cpp">
+      <Filter>GameClasses\GameLogic</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

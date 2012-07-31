@@ -14,7 +14,7 @@ namespace BlackJack
 		/* Enums */
 		/*********/
 	public:
-		enum VisualizationType { GameBoard, PlayerXMadeBet, PlayerXDealtCardY };
+		enum VisualizationType { GameBoard, PlayerXMadeBet, PlayerXDealtCardY, DealerDeltCardX };
 
 		/************/
 		/* Typedefs */
@@ -32,12 +32,20 @@ namespace BlackJack
 			struct 
 			{
 				uint PlayerNum;
+				uint HandIndex;
+				uint BetAmount;
 			};
 			// PlayerXDealtCardY
 			struct
 			{
 				uint PlayerNum;
-				Card Card;
+				uint HandIndex;
+				Card PlayerCard;
+			};
+			// DealerDeltCardX
+			struct
+			{
+				Card DealerCard;
 			};
 		};
 

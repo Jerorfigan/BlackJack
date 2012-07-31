@@ -19,7 +19,6 @@ namespace BlackJack
 		/* Setup default game settings. */
 
 		PlayerConfiguration playerConfig;
-		DealerConfiguration dealerConfig;
 
 		// Player defaults: 1 user controlled and 3 AI players.
 		m_gameConfig.NumPlayers = 4;

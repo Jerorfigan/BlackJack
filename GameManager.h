@@ -1,13 +1,24 @@
 #pragma once
 
+#include <vector>
+
 #include "TaskManager.h"
 #include "GameConfiguration.h"
+#include "Player.h"
+#include "Dealer.h"
+#include "DealerAI.h"
 
 namespace BlackJack
 {
 
 	class GameManager
 	{
+		/************/
+		/* Typedefs */
+		/************/
+	public:
+		typedef std::vector< Player* > PlayerList;
+
 		/****************/
 		/* Constructors */
 		/****************/
@@ -22,6 +33,9 @@ namespace BlackJack
 		void						Reset();
 		void					    SetGameConfiguration( const GameConfiguration &gameConfig );
 		const GameConfiguration&    GetGameConfiguration() const;
+		PlayerList&                 GetPlayerList();
+		Dealer&                     GetDealer();
+		DealerAI&                   GetDealerAI();
 
 		/**************/
 		/* Destructor */
@@ -35,6 +49,9 @@ namespace BlackJack
 	private:
 		GameConfiguration     m_gameConfig;
 		TaskManager           m_taskManager;
+		PlayerList            m_players;
+		Dealer                m_dealer;
+		DealerAI			  m_dealerAI;
 
 		/******************/
 		/* Static methods */
@@ -71,6 +88,33 @@ namespace BlackJack
 	GameManager::GetGameConfiguration() const
 	{
 		return m_gameConfig;
+	}
+
+	///////////////////
+	// GetPlayerList //
+	///////////////////
+	inline GameManager::PlayerList&                 
+	GameManager::GetPlayerList()
+	{
+		return m_players;
+	}
+
+	///////////////
+	// GetDealer //
+	///////////////
+	inline Dealer&                     
+	GameManager::GetDealer()
+	{
+		return m_dealer;
+	}
+
+	/////////////////
+	// GetDealerAI //
+	/////////////////
+	inline DealerAI&                   
+	GameManager::GetDealerAI()
+	{
+		return m_dealerAI;
 	}
 
 	/******************/

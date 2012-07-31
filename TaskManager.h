@@ -29,6 +29,7 @@ namespace BlackJack
 		struct TaskData
 		{
 			uint					           PlayerNumber;
+			uint                               HandIndex;
 			GameVisualizer::VisualizationID    VisID;
 		};
 
