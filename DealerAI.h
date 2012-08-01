@@ -19,7 +19,12 @@ namespace BlackJack
 		/***********/
 	public:
 		void AddCardToHand( const Card &card );
+		void RevealHoleCard();
+
 		uint GetNumCards() const;
+		uint GetHandValue() const;
+		bool HasBlackJack() const;
+		bool CanHit() const;
 
 		/**************/
 		/* Destructor */
