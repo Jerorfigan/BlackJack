@@ -112,6 +112,12 @@
     <ClInclude Include="GameInput.h">
       <Filter>GameClasses\Input</Filter>
     </ClInclude>
+    <ClInclude Include="Visualizer.h">
+      <Filter>GameClasses\Visualization</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualization.h">
+      <Filter>GameClasses\Visualization</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

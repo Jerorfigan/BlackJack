@@ -4,6 +4,7 @@
 #include "GameError.h"
 #include "GameInput.h"
 #include "GameVisualizer.h"
+#include "AIPlayer.h"
 
 namespace BlackJack
 {
@@ -41,6 +42,16 @@ namespace BlackJack
 		// Misc defaults.
 		m_gameConfig.AllowSplit = true;
 		m_gameConfig.AllowSurrender = false;
+
+		// Add some AI players.
+		m_players.push_back( new AIPlayer() );
+		m_players.push_back( new AIPlayer() );
+		m_players.push_back( new AIPlayer() );
+		m_players.push_back( new AIPlayer() );
+
+		// Visualize game board
+		GameVisualizer::VisualizationData visData;
+		GameVisuals()->Visualize( GameVisualizer::GameBoard, visData );
 	}
 
 	/***********/
@@ -54,6 +65,8 @@ namespace BlackJack
 	GameManager::Update()
 	{
 		m_taskManager.PerformTask();
+
+		GameVisuals()->Update();
 	}
 
 	///////////
@@ -70,7 +83,12 @@ namespace BlackJack
 	/**************/
 	GameManager::~GameManager()
 	{
-
+		// Free memory allocated for the players
+		for( PlayerList::iterator playerItr = m_players.begin(); 
+			 playerItr != m_players.end(); ++playerItr )
+		{
+			 delete *playerItr;
+		}
 	}
 
 	/******************/

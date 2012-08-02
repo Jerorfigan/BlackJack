@@ -2,6 +2,7 @@
 
 #include "GameVisualizer.h"
 #include "GameError.h"
+#include "ServiceProvider.h"
 
 namespace BlackJack
 {
@@ -23,26 +24,59 @@ namespace BlackJack
 	///////////////
 	// Visualize //
 	///////////////
-	GameVisualizer::VisualizationID 
+	Visualization::ID 
 	GameVisualizer::Visualize( VisualizationType visType, const VisualizationData &data )
 	{
-		return ++m_visIDSequence;
+		return 0;
 	}
 
 	///////////////////////////
 	// VisualizationComplete //
 	///////////////////////////
 	bool 
-	GameVisualizer::VisualizationComplete( VisualizationID ID )
+	GameVisualizer::VisualizationComplete( Visualization::ID id )
 	{
 		return false;
 	}
 
-	/*******************/
-	/* Virtual Methods */
-	/*******************/
+	////////////
+	// Update //
+	////////////
+	void GameVisualizer::Update()
+	{
+		/* Iterate through the list of visualizers and call update on each one. 
+		   The visualizers will also call into the graphics interface at this time, 
+		   so essentially this is our drawing loop as well. */
+
+		ServProvider()->GetGraphicsProvider()->ClearBackbuffer();
+		ServProvider()->GetGraphicsProvider()->BeginScene();
+		ServProvider()->GetGraphicsProvider()->StartSpriteBatch();
+
+		float elapsedTime = m_highResTimer.GetElapsedTimeMilli();
+		m_highResTimer.Reset();
+
+		for( VisualizerList::iterator visualizerItr = m_visualizers.begin(); 
+			 visualizerItr != m_visualizers.end(); ++visualizerItr )
+		{
+			(*visualizerItr)->Update( elapsedTime );
+		}
+
+		ServProvider()->GetGraphicsProvider()->EndSpriteBatch();
+		ServProvider()->GetGraphicsProvider()->EndScene();
+		ServProvider()->GetGraphicsProvider()->Flip();
+	}
+
+	////////////////
+	// Destructor //
+	////////////////
 	GameVisualizer::~GameVisualizer()
 	{
+		// Free memory used for visualizers
+		for( VisualizerList::iterator visualizerItr = m_visualizers.begin(); 
+			 visualizerItr != m_visualizers.end(); ++visualizerItr )
+		{
+			delete *visualizerItr;
+		}
 	}
 
 	/******************/
@@ -71,7 +105,6 @@ namespace BlackJack
 	/***************/
 	/* Static Data */
 	/***************/
-	GameVisualizer::VisualizationID    GameVisualizer::m_visIDSequence = 1;
-	GameVisualizer*					   GameVisualizer::m_pGameVisualizer = NULL;
+	GameVisualizer*    GameVisualizer::m_pGameVisualizer = NULL;
 
 }

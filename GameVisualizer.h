@@ -1,9 +1,13 @@
 #pragma once
 
 #include <cstdlib>
+#include <vector>
+#include <map>
 
 #include "Globals.h"
 #include "Card.h"
+#include "Visualizer.h"
+#include "..\GameUtilities\HighResolutionTimer.h"
 
 namespace BlackJack
 {
@@ -20,13 +24,19 @@ namespace BlackJack
 		/************/
 		/* Typedefs */
 		/************/
-	public:
-		typedef std::size_t VisualizationID;   
+	public: 
+		typedef std::vector< Visualizer* > VisualizerList;
+		typedef std::map< VisualizationType, Visualizer::ID > VisType2Visualizer;
 
 		/********************/
 		/* Internal classes */
 		/********************/
 	public:
+		struct VisType
+		{
+			VisualizationType    m_type;
+		};
+
 		union VisualizationData
 		{
 			// PlayerXHandYMadeBetZ
@@ -86,6 +96,20 @@ namespace BlackJack
 			};
 		};
 
+		/******************/
+		/* Static Methods */
+		/******************/
+	public:
+		static void				  Create();
+		static void			      Destroy();
+		static GameVisualizer*    GetGameVisualizer();
+
+		/***************/
+		/* Static Data */
+		/***************/
+	private:
+		static GameVisualizer*    m_pGameVisualizer;
+
 		/****************/
 		/* Constructors */
 		/****************/
@@ -96,29 +120,19 @@ namespace BlackJack
 		/* Methods */
 		/***********/
 	public:
-		VisualizationID Visualize( VisualizationType visType, const VisualizationData &data );
-		bool VisualizationComplete( VisualizationID ID );
+		Visualization::ID    Visualize( VisualizationType visType, const VisualizationData &data );
+		bool			     VisualizationComplete( Visualization::ID id );
+		void			     Update();
 
-		/*******************/
-		/* Virtual Methods */
-		/*******************/
-	public:
 		~GameVisualizer();
 
-		/******************/
-		/* Static Methods */
-		/******************/
-	public:
-		static void Create();
-		static void Destroy();
-		static GameVisualizer* GetGameVisualizer();
-
-		/***************/
-		/* Static Data */
-		/***************/
+		/********/
+		/* Data */
+		/********/
 	private:
-		static VisualizationID    m_visIDSequence;
-		static GameVisualizer*    m_pGameVisualizer;
+		VisualizerList                        m_visualizers;
+		GameUtilities::HighResolutionTimer    m_highResTimer;
+		VisType2Visualizer                    m_visType2Visualizer;
 	};
 
 	/******************/

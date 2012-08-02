@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "Hand.h"
+#include "GameManager.h"
 
 namespace BlackJack
 {
@@ -71,6 +72,29 @@ namespace BlackJack
 		value = sum;
 
 		return soft;
+	}
+
+	//////////////
+	// CanSplit //
+	//////////////
+	bool 
+	Hand::CanSplit() const
+	{
+		// Can split if hand has 2 cards of equal value (all face cards count as 10)
+		return ( GameMgr()->GetGameConfiguration().AllowSplit && m_cards.size() == 2 && 
+			( m_cards[0].m_value == m_cards[1].m_value || 
+			( ( m_cards[0].m_value == Card::King || m_cards[0].m_value == Card::Queen || m_cards[0].m_value == Card::Jack || m_cards[0].m_value == Card::Ten ) && 
+			( m_cards[1].m_value == Card::King || m_cards[1].m_value == Card::Queen || m_cards[1].m_value == Card::Jack || m_cards[1].m_value == Card::Ten ) ) ) );
+	}
+
+	//////////////////
+	// CanSurrender //
+	//////////////////
+	bool 
+	Hand::CanSurrender() const
+	{
+		// Can surrender if hand has 2 cards
+		return ( GameMgr()->GetGameConfiguration().AllowSurrender && m_cards.size() == 2 );
 	}
 
 }

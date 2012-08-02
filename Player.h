@@ -101,7 +101,9 @@ namespace BlackJack
 	inline uint			
 	Player::GetHandValue( uint handIndex ) const
 	{
-		return m_hands[ handIndex ].GetValue();
+		uint value = 0;
+		m_hands[ handIndex ].GetValue( value );
+		return value;
 	}
 
 	/////////////
@@ -110,8 +112,10 @@ namespace BlackJack
 	inline bool			
 	Player::CanPlay( uint handIndex ) const
 	{
-		return ( m_handStatuses[ handIndex ] == Hit || m_handStatuses[ handIndex ] == Split ) &&
-			   m_hands[ handIndex ].GetValue() < 21;
+		uint value = 0;
+		m_hands[ handIndex ].GetValue( value );
+
+		return ( m_handStatuses[ handIndex ] == Hit || m_handStatuses[ handIndex ] == Split ) && value < 21;
 	}
 
 	//////////////////

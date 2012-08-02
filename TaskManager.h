@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Globals.h"
-#include "GameVisualizer.h"
+#include "Visualization.h"
 
 namespace BlackJack
 {
@@ -27,9 +27,9 @@ namespace BlackJack
 
 		struct TaskData
 		{
-			uint					           PlayerNumber;
-			uint                               HandIndex;
-			GameVisualizer::VisualizationID    VisID;
+			uint			     PlayerNumber;
+			uint                 HandIndex;
+			Visualization::ID    VisID;
 		};
 
 		/****************/

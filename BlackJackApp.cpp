@@ -78,7 +78,10 @@ namespace BlackJack
 	//	{
 	//		first = false;
 
-	//		spriteInfo.imageFile = "MyBMP2.bmp";
+	//		spriteInfo.imageFile = "MyBMP.bmp";
+	//		spriteInfo.position.x = 400;
+	//		spriteInfo.position.y = 400;
+	//		spriteInfo.zDepth = 0;
 	//		spriteInfo.alpha = 1;
 	//		spriteInfo.rotation = 0;
 	//		spriteInfo.scale = 1;
@@ -90,8 +93,21 @@ namespace BlackJack
 	//		spriteInfo.center.y = 32;
 
 	//		spriteCollectionID = ServProvider()->GetGraphicsProvider()->CreateSpriteCollection();
-
 	//		ServProvider()->GetGraphicsProvider()->AddSprite( spriteCollectionID, "test", spriteInfo );
+
+	//		spriteInfo.imageFile = "MyBMP2.bmp";
+	//		spriteInfo.alpha = 1;
+	//		spriteInfo.rotation = 0;
+	//		spriteInfo.scale = 1;
+	//		spriteInfo.subrect.bottom = 0;
+	//		spriteInfo.subrect.left = 0;
+	//		spriteInfo.subrect.right = 0;
+	//		spriteInfo.subrect.top = 0;
+	//		spriteInfo.center.x = 32;
+	//		spriteInfo.center.y = 32;
+	//		spriteInfo.zDepth = 1;
+
+	//		ServProvider()->GetGraphicsProvider()->AddSprite( spriteCollectionID, "test2", spriteInfo );
 	//	}
 	//	ServProvider()->GetGraphicsProvider()->BeginScene();
 	//	ServProvider()->GetGraphicsProvider()->StartSpriteBatch();
@@ -114,7 +130,7 @@ namespace BlackJack
 	//		spriteInfo.position.y -= 3.0f;
 	//	if( ServProvider()->GetInputProvider()->IsKeyDown( KEY(DownArrow) ) )
 	//		spriteInfo.position.y += 3.0f;
-	//	ServProvider()->GetGraphicsProvider()->SetSprite( spriteCollectionID, "test", spriteInfo );
+	//	ServProvider()->GetGraphicsProvider()->SetSprite( spriteCollectionID, "test2", spriteInfo );
 
 	//	ServProvider()->GetGraphicsProvider()->DrawSpriteCollection( spriteCollectionID );
 
