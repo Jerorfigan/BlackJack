@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Globals.h"
-#include "PlayerQuerier.h"
 #include "GameVisualizer.h"
 
 namespace BlackJack
@@ -70,8 +69,6 @@ namespace BlackJack
 	private:
 		/* Stores info about the current task being performed. */
 		TaskState         m_taskState;
-		PlayerQuerier     m_playerQuerier;
-		GameVisualizer    m_gameVisualizer;
 	};
 
 }

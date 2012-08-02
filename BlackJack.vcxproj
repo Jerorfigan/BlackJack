@@ -95,7 +95,7 @@
     <ClInclude Include="GameConfiguration.h" />
     <ClInclude Include="GameVisualizer.h" />
     <ClInclude Include="Globals.h" />
-    <ClInclude Include="PlayerQuerier.h" />
+    <ClInclude Include="GameInput.h" />
     <ClInclude Include="ServiceProvider.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -103,6 +103,7 @@
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AIPlayer.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="BlackJackApp.cpp" />
     <ClCompile Include="Dealer.cpp" />
@@ -110,13 +111,16 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameVisualizer.cpp" />
     <ClCompile Include="Globals.cpp" />
-    <ClCompile Include="PlayerQuerier.cpp" />
+    <ClCompile Include="Hand.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="GameInput.cpp" />
     <ClCompile Include="ServiceProvider.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="TaskManager.cpp" />
+    <ClCompile Include="UserPlayer.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

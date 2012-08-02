@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "GameVisualizer.h"
+#include "GameError.h"
 
 namespace BlackJack
 {
@@ -9,7 +10,10 @@ namespace BlackJack
 	/****************/
 	GameVisualizer::GameVisualizer()
 	{
+		if( m_pGameVisualizer )
+			throw GameError( "[GameVisualizer::GameVisualizer]: Attempt to instantiate multiple instances of singleton GameVisualizer." );
 
+		m_pGameVisualizer = this;
 	}
 
 	/***********/
@@ -34,16 +38,40 @@ namespace BlackJack
 		return false;
 	}
 
-	/***************/
-	/* Destructors */
-	/***************/
+	/*******************/
+	/* Virtual Methods */
+	/*******************/
 	GameVisualizer::~GameVisualizer()
 	{
+	}
 
+	/******************/
+	/* Static Methods */
+	/******************/
+
+	////////////
+	// Create //
+	////////////
+	void 
+	GameVisualizer::Create()
+	{
+		new GameVisualizer();
+	}
+
+	/////////////
+	// Destroy //
+	/////////////
+	void 
+	GameVisualizer::Destroy()
+	{
+		delete m_pGameVisualizer;
+		m_pGameVisualizer = NULL;
 	}
 
 	/***************/
-	/* Static data */
+	/* Static Data */
 	/***************/
 	GameVisualizer::VisualizationID    GameVisualizer::m_visIDSequence = 1;
+	GameVisualizer*					   GameVisualizer::m_pGameVisualizer = NULL;
+
 }

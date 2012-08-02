@@ -15,7 +15,7 @@ namespace BlackJack
 		/*********/
 	public:
 		enum VisualizationType { GameBoard, PlayerXHandYMadeBetZ, PlayerXHandYDealtCardZ, PlayerXHandYSplit, PlayerXSurrender, DealerDeltCardX, 
-			DealerRevealHole, PlayerXWonHandYWinningZ, PlayerXPushedHandY, PlayerXLostHandY, PlayerXAdjustChipsToY };
+								 DealerRevealHole, PlayerXWonHandYWinningZ, PlayerXPushedHandY, PlayerXLostHandY, PlayerXAdjustChipsToY };
 
 		/************/
 		/* Typedefs */
@@ -99,17 +99,46 @@ namespace BlackJack
 		VisualizationID Visualize( VisualizationType visType, const VisualizationData &data );
 		bool VisualizationComplete( VisualizationID ID );
 
-		/***************/
-		/* Destructors */
-		/***************/
+		/*******************/
+		/* Virtual Methods */
+		/*******************/
 	public:
 		~GameVisualizer();
 
+		/******************/
+		/* Static Methods */
+		/******************/
+	public:
+		static void Create();
+		static void Destroy();
+		static GameVisualizer* GetGameVisualizer();
+
 		/***************/
-		/* Static data */
+		/* Static Data */
 		/***************/
 	private:
 		static VisualizationID    m_visIDSequence;
+		static GameVisualizer*    m_pGameVisualizer;
 	};
+
+	/******************/
+	/* Static Inlines */
+	/******************/
+
+	///////////////////////
+	// GetGameVisualizer //
+	///////////////////////
+	inline GameVisualizer* 
+	GameVisualizer::GetGameVisualizer()
+	{
+		return m_pGameVisualizer;
+	}
+
+	/* Global abbreviated wrapper for GameVisualizer::GetGameVisualizer */
+	inline GameVisualizer*
+	GameVisuals()
+	{
+		return GameVisualizer::GetGameVisualizer();
+	}
 
 }

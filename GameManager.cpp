@@ -2,6 +2,8 @@
 
 #include "GameManager.h"
 #include "GameError.h"
+#include "GameInput.h"
+#include "GameVisualizer.h"
 
 namespace BlackJack
 {
@@ -15,6 +17,10 @@ namespace BlackJack
 			throw GameError( "[GameManager::GameManager]: Attempt to instantiate multiple instances of singleton class GameManager." );
 
 		m_pGameManager = this;
+
+		/* Create game visualizer and input singletons */
+		GameInput::Create();
+		GameVisualizer::Create();
 
 		/* Setup default game settings. */
 
@@ -86,6 +92,10 @@ namespace BlackJack
 	void			   
 	GameManager::Destroy()
 	{
+		// Destroy game input and visualizer singletons.
+		GameInput::Destroy();
+		GameVisualizer::Destroy();
+
 		delete m_pGameManager;
 		m_pGameManager = NULL;
 	}

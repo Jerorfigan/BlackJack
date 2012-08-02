@@ -85,9 +85,6 @@
     <ClInclude Include="GameVisualizer.h">
       <Filter>GameClasses\Visualization</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerQuerier.h">
-      <Filter>GameClasses\Input</Filter>
-    </ClInclude>
     <ClInclude Include="Card.h">
       <Filter>GameClasses\GameLogic</Filter>
     </ClInclude>
@@ -111,6 +108,9 @@
     </ClInclude>
     <ClInclude Include="DealerAI.h">
       <Filter>GameClasses\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="GameInput.h">
+      <Filter>GameClasses\Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -138,9 +138,6 @@
     <ClCompile Include="TaskManager.cpp">
       <Filter>GameClasses\Management</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerQuerier.cpp">
-      <Filter>GameClasses\Input</Filter>
-    </ClCompile>
     <ClCompile Include="GameVisualizer.cpp">
       <Filter>GameClasses\Visualization</Filter>
     </ClCompile>
@@ -148,6 +145,21 @@
       <Filter>GameClasses\GameLogic</Filter>
     </ClCompile>
     <ClCompile Include="Dealer.cpp">
+      <Filter>GameClasses\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="AIPlayer.cpp">
+      <Filter>GameClasses\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>GameClasses\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="UserPlayer.cpp">
+      <Filter>GameClasses\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="GameInput.cpp">
+      <Filter>GameClasses\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Hand.cpp">
       <Filter>GameClasses\GameLogic</Filter>
     </ClCompile>
   </ItemGroup>

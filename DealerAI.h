@@ -2,6 +2,7 @@
 
 #include "Globals.h"
 #include "Card.h"
+#include "Hand.h"
 
 namespace BlackJack
 {
@@ -26,11 +27,13 @@ namespace BlackJack
 		bool HasBlackJack() const;
 		bool CanHit() const;
 
-		/**************/
-		/* Destructor */
-		/**************/
-	public:
 		~DealerAI();
+
+		/********/
+		/* Data */
+		/********/
+	private:
+		Hand    m_hand;
 	};
 
 	/***********/
@@ -45,4 +48,5 @@ namespace BlackJack
 	{
 		return 0;
 	}
+
 }

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "DealerAI.h"
+#include "GameManager.h"
 
 namespace BlackJack
 {
@@ -22,7 +23,7 @@ namespace BlackJack
 	void 
 	DealerAI::AddCardToHand( const Card &card )
 	{
-
+		m_hand.AddCard( card );
 	}
 
 	////////////////////
@@ -31,7 +32,7 @@ namespace BlackJack
 	void 
 	DealerAI::RevealHoleCard()
 	{
-
+		m_hand[1].m_orientation = Card::FaceUp;
 	}
 
 	//////////////////
@@ -40,7 +41,9 @@ namespace BlackJack
 	uint 
 	DealerAI::GetHandValue() const
 	{
-		return 0;
+		uint value;
+		m_hand.GetValue( value ); 
+		return value;
 	}
 
 	//////////////////
@@ -49,7 +52,7 @@ namespace BlackJack
 	bool 
 	DealerAI::HasBlackJack() const
 	{
-		return false;
+		return m_hand.HasBlackJack();
 	}
 
 	////////////
@@ -58,12 +61,15 @@ namespace BlackJack
 	bool 
 	DealerAI::CanHit() const
 	{
-		return false;
+		uint value;
+		bool soft = m_hand.GetValue( value ); 
+
+		return value <= 16 || ( value == 17 && soft && GameMgr()->GetGameConfiguration().DealerConfig.HitOnSoftSeventeen );
 	}
 
-	/**************/
-	/* Destructor */
-	/**************/
+	////////////////
+	// Destructor //
+	////////////////
 	DealerAI::~DealerAI()
 	{
 
