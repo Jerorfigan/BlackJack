@@ -112,10 +112,22 @@
     <ClInclude Include="GameInput.h">
       <Filter>GameClasses\Input</Filter>
     </ClInclude>
-    <ClInclude Include="Visualizer.h">
+    <ClInclude Include="Visualization.h">
       <Filter>GameClasses\Visualization</Filter>
     </ClInclude>
-    <ClInclude Include="Visualization.h">
+    <ClInclude Include="DynamicImage.h">
+      <Filter>GameClasses\Visualization</Filter>
+    </ClInclude>
+    <ClInclude Include="CardVisual.h">
+      <Filter>GameClasses\Visualization</Filter>
+    </ClInclude>
+    <ClInclude Include="HandVisual.h">
+      <Filter>GameClasses\Visualization</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>GameClasses\Visualization</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerVisual.h">
       <Filter>GameClasses\Visualization</Filter>
     </ClInclude>
   </ItemGroup>
@@ -167,6 +179,15 @@
     </ClCompile>
     <ClCompile Include="Hand.cpp">
       <Filter>GameClasses\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerVisual.cpp">
+      <Filter>GameClasses\Visualization</Filter>
+    </ClCompile>
+    <ClCompile Include="HandVisual.cpp">
+      <Filter>GameClasses\Visualization</Filter>
+    </ClCompile>
+    <ClCompile Include="CardVisual.cpp">
+      <Filter>GameClasses\Visualization</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

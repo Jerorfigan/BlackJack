@@ -78,6 +78,7 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CardVisual.h" />
     <ClInclude Include="DealerAI.h" />
     <ClInclude Include="AIPlayer.h" />
     <ClInclude Include="Application.h" />
@@ -86,9 +87,12 @@
     <ClInclude Include="Dealer.h" />
     <ClInclude Include="DealerConfiguration.h" />
     <ClInclude Include="Deck.h" />
+    <ClInclude Include="DynamicImage.h" />
     <ClInclude Include="Hand.h" />
+    <ClInclude Include="HandVisual.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerConfiguration.h" />
+    <ClInclude Include="PlayerVisual.h" />
     <ClInclude Include="TaskManager.h" />
     <ClInclude Include="GameError.h" />
     <ClInclude Include="GameManager.h" />
@@ -99,23 +103,26 @@
     <ClInclude Include="ServiceProvider.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Transform.h" />
     <ClInclude Include="UserPlayer.h" />
     <ClInclude Include="Visualization.h" />
-    <ClInclude Include="Visualizer.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AIPlayer.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="BlackJackApp.cpp" />
+    <ClCompile Include="CardVisual.cpp" />
     <ClCompile Include="Dealer.cpp" />
     <ClCompile Include="DealerAI.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameVisualizer.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="Hand.cpp" />
+    <ClCompile Include="HandVisual.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="GameInput.cpp" />
+    <ClCompile Include="PlayerVisual.cpp" />
     <ClCompile Include="ServiceProvider.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

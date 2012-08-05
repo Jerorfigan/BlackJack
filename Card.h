@@ -8,8 +8,8 @@ namespace BlackJack
 		/****************/
 		/* Enumerations */
 		/****************/
-		enum Suit { Hearts, Diamons, Spades, Clubs };
-		enum Value { Two = 2, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace };
+		enum Suit { Clubs = 1, Diamonds, Hearts, Spades };
+		enum Value { Ace = 1, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King };
 		enum Orientation { FaceDown, FaceDownSideways, FaceUp, FaceUpSideways };
 
 		/****************/

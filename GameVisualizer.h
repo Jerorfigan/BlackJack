@@ -6,7 +6,8 @@
 
 #include "Globals.h"
 #include "Card.h"
-#include "Visualizer.h"
+#include "Visualization.h"
+#include "PlayerVisual.h"
 #include "..\GameUtilities\HighResolutionTimer.h"
 
 namespace BlackJack
@@ -24,19 +25,14 @@ namespace BlackJack
 		/************/
 		/* Typedefs */
 		/************/
-	public: 
-		typedef std::vector< Visualizer* > VisualizerList;
-		typedef std::map< VisualizationType, Visualizer::ID > VisType2Visualizer;
+	private: 
+		typedef std::vector< Visualization* > VisualizationList;
+		typedef std::vector< PlayerVisual* > PlayerVisualList;
 
 		/********************/
 		/* Internal classes */
 		/********************/
 	public:
-		struct VisType
-		{
-			VisualizationType    m_type;
-		};
-
 		union VisualizationData
 		{
 			// PlayerXHandYMadeBetZ
@@ -120,9 +116,13 @@ namespace BlackJack
 		/* Methods */
 		/***********/
 	public:
-		Visualization::ID    Visualize( VisualizationType visType, const VisualizationData &data );
-		bool			     VisualizationComplete( Visualization::ID id );
+		void				 Visualize( VisualizationType visType, const VisualizationData &data );
+		bool			     VisualizationsComplete();
 		void			     Update();
+		void                 Draw();
+
+	private:
+		void                 AddVisualization( Visualization::ID id, Visualization *pVis );
 
 		~GameVisualizer();
 
@@ -130,9 +130,14 @@ namespace BlackJack
 		/* Data */
 		/********/
 	private:
-		VisualizerList                        m_visualizers;
 		GameUtilities::HighResolutionTimer    m_highResTimer;
-		VisType2Visualizer                    m_visType2Visualizer;
+		VisualizationList                     m_activeVisualizations;
+		PlayerVisualList					  m_playerVisuals;
+
+		/***********************/
+		/* Friend Declarations */
+		/***********************/
+		friend class CardVisual;
 	};
 
 	/******************/
