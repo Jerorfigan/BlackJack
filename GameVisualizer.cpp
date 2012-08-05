@@ -135,12 +135,20 @@ namespace BlackJack
 	void                
 	GameVisualizer::Draw()
 	{
+		ServProvider()->GetGraphicsProvider()->ClearBackbuffer();
+		ServProvider()->GetGraphicsProvider()->BeginScene();
+		ServProvider()->GetGraphicsProvider()->StartSpriteBatch();
+
 		// Draw the player visuals
 		for( PlayerVisualList::iterator playerVisualItr = m_playerVisuals.begin();
 			 playerVisualItr != m_playerVisuals.end(); ++playerVisualItr )
 		{
 			(*playerVisualItr)->Draw();
 		}
+
+		ServProvider()->GetGraphicsProvider()->EndSpriteBatch();
+		ServProvider()->GetGraphicsProvider()->EndScene();
+		ServProvider()->GetGraphicsProvider()->Flip();
 	}
 
 	////////////////

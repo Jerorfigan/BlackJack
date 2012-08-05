@@ -19,10 +19,6 @@ namespace BlackJack
 
 		m_pGameManager = this;
 
-		/* Create game visualizer and input singletons */
-		GameInput::Create();
-		GameVisualizer::Create();
-
 		/* Setup default game settings. */
 
 		PlayerConfiguration playerConfig;
@@ -49,6 +45,10 @@ namespace BlackJack
 		m_players.push_back( new AIPlayer() );
 		m_players.push_back( new AIPlayer() );
 
+		/* Create game visualizer and input singletons */
+		GameInput::Create();
+		GameVisualizer::Create();
+
 		// Visualize game board
 		GameVisualizer::VisualizationData visData;
 		GameVisuals()->Visualize( GameVisualizer::GameBoard, visData );
@@ -67,6 +67,8 @@ namespace BlackJack
 		m_taskManager.PerformTask();
 
 		GameVisuals()->Update();
+
+		GameVisuals()->Draw();
 	}
 
 	///////////

@@ -8,7 +8,7 @@ namespace BlackJack
 	/***************/
 	/* Static Data */
 	/***************/
-	GameUtilities::Point2D    m_cardOffset( -20.0f, 20.0f );
+	GameUtilities::Point2D    HandVisual::m_cardOffset( -20.0f, 20.0f );
 
 	/****************/
 	/* Constructors */
@@ -27,7 +27,7 @@ namespace BlackJack
 	void           
 	HandVisual::AddCard( Card card )
 	{
-		GameUtilities::Point2D offset = m_cardVisuals.size() * m_cardOffset;
+		GameUtilities::Point2D offset = static_cast< float >( m_cardVisuals.size() ) * m_cardOffset;
 
 		m_cardVisuals.push_back( new CardVisual( card, m_position + offset, m_cardVisuals.size() + 1 ) );
 	}

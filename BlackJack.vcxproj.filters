@@ -189,5 +189,11 @@
     <ClCompile Include="CardVisual.cpp">
       <Filter>GameClasses\Visualization</Filter>
     </ClCompile>
+    <ClCompile Include="Visualization.cpp">
+      <Filter>GameClasses\Visualization</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicImage.cpp">
+      <Filter>GameClasses\Visualization</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

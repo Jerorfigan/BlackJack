@@ -116,13 +116,10 @@ namespace BlackJack
 		/* Methods */
 		/***********/
 	public:
-		void				 Visualize( VisualizationType visType, const VisualizationData &data );
-		bool			     VisualizationsComplete();
-		void			     Update();
-		void                 Draw();
-
-	private:
-		void                 AddVisualization( Visualization::ID id, Visualization *pVis );
+		void    Visualize( VisualizationType visType, const VisualizationData &data );
+		bool	VisualizationsComplete();
+		void    Update();
+		void    Draw();
 
 		~GameVisualizer();
 

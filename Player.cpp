@@ -9,7 +9,12 @@ namespace BlackJack
 	/****************/
 	Player::Player() : m_chips( 0 )
 	{
-
+		// Create the default hand
+		m_hands.push_back( Hand() );
+		// Create the default bet placeholder
+		m_currentBets.push_back( 0 );
+		// Create the default handstatus placeholder
+		m_handStatuses.push_back( Hit );
 	}
 
 	/***********/
@@ -43,6 +48,10 @@ namespace BlackJack
 		Card topCard = m_hands[ handIndex ].RemoveTopCard();
 
 		m_hands.push_back( Hand( topCard ) );
+		// Copy bet from hand being split to new partial hand
+		m_currentBets.push_back( m_currentBets[ handIndex ] );
+		// Create the default handstatus placeholder for the new partial hand
+		m_handStatuses.push_back( Hit );
 	}
 
 	//////////////

@@ -142,14 +142,14 @@ namespace BlackJack
 				visData.HandIndex = pTaskData->HandIndex;
 				visData.BetAmount = GameMgr()->GetPlayerList()[ pTaskData->PlayerNumber - 1 ]->GetCurrentBet( pTaskData->HandIndex );
 
-				pTaskData->VisID = GameVisuals()->Visualize( GameVisualizer::PlayerXHandYMadeBetZ, visData );
+				GameVisuals()->Visualize( GameVisualizer::PlayerXHandYMadeBetZ, visData );
 
 				m_taskState.StepNumber = 5;
 			}
 			// WAIT FOR VISUALIZATION COMPLETION
 		case 5:
 			{
-				if( GameVisuals()->VisualizationComplete( pTaskData->VisID ) )
+				if( GameVisuals()->VisualizationsComplete() )
 				{
 					m_taskState.StepNumber = 6;
 				}
@@ -208,14 +208,14 @@ namespace BlackJack
 				visData.HandIndex = 0;
 				visData.PlayerCard = card;
 
-				pTaskData->VisID = GameVisuals()->Visualize( GameVisualizer::PlayerXHandYDealtCardZ, visData );
+				GameVisuals()->Visualize( GameVisualizer::PlayerXHandYDealtCardZ, visData );
 
 				m_taskState.StepNumber = 4;
 			}
 			// WAIT FOR VISUALIZATION COMPLETION
 		case 4:
 			{
-				if( GameVisuals()->VisualizationComplete( pTaskData->VisID ) )
+				if( GameVisuals()->VisualizationsComplete() )
 				{
 					m_taskState.StepNumber = 5;
 				}
@@ -248,14 +248,14 @@ namespace BlackJack
 				GameVisualizer::VisualizationData visData;
 				visData.DealerCard = card;
 
-				pTaskData->VisID = GameVisuals()->Visualize( GameVisualizer::DealerDeltCardX, visData );
+				GameVisuals()->Visualize( GameVisualizer::DealerDeltCardX, visData );
 
 				m_taskState.StepNumber = 7;
 			}
 			// WAIT FOR VISUALIZATION COMPLETION
 		case 7:
 			{
-				if( GameVisuals()->VisualizationComplete( pTaskData->VisID ) )
+				if( GameVisuals()->VisualizationsComplete() )
 				{
 					m_taskState.StepNumber = 8;
 				}
@@ -270,7 +270,7 @@ namespace BlackJack
 
 					GameVisualizer::VisualizationData visData;
 
-					pTaskData->VisID = GameVisuals()->Visualize( GameVisualizer::DealerRevealHole, visData );
+					GameVisuals()->Visualize( GameVisualizer::DealerRevealHole, visData );
 
 					m_taskState.StepNumber = 9;
 				}
@@ -283,7 +283,7 @@ namespace BlackJack
 			// WAIT FOR DEALER BLACKJACK VISUALIZATION COMPLETION
 		case 9:
 			{
-				if( GameVisuals()->VisualizationComplete( pTaskData->VisID ) )
+				if( GameVisuals()->VisualizationsComplete() )
 				{
 					// Task complete
 					return true;
@@ -412,12 +412,12 @@ namespace BlackJack
 				visData.HandIndex = pTaskData->HandIndex;
 				visData.PlayerCard = card;
 
-				pTaskData->VisID = GameVisuals()->Visualize( GameVisualizer::PlayerXHandYDealtCardZ, visData );
+				GameVisuals()->Visualize( GameVisualizer::PlayerXHandYDealtCardZ, visData );
 			}
 			// WAIT FOR HIT PLAYER VISUALIZATION COMPLETION
 		case 7:
 			{
-				if( GameVisuals()->VisualizationComplete( pTaskData->VisID ) )
+				if( GameVisuals()->VisualizationsComplete() )
 				{
 					m_taskState.StepNumber = 17;
 				}
@@ -434,14 +434,14 @@ namespace BlackJack
 				visData.HandIndex = pTaskData->HandIndex;
 				visData.BetAmount = GameMgr()->GetPlayerList()[ pTaskData->PlayerNumber - 1  ]->GetCurrentBet( pTaskData->HandIndex );
 
-				pTaskData->VisID = GameVisuals()->Visualize( GameVisualizer::PlayerXHandYMadeBetZ, visData );
+				GameVisuals()->Visualize( GameVisualizer::PlayerXHandYMadeBetZ, visData );
 
 				m_taskState.StepNumber = 9;
 			}
 			// WAIT FOR DOUBLE PLAYER BET VISUALIZATION COMPLETION
 		case 9:
 			{
-				if( GameVisuals()->VisualizationComplete( pTaskData->VisID ) )
+				if( GameVisuals()->VisualizationsComplete() )
 				{
 					m_taskState.StepNumber = 10;
 				}
@@ -461,14 +461,14 @@ namespace BlackJack
 				visData.HandIndex = pTaskData->HandIndex;
 				visData.PlayerCard = card;
 
-				pTaskData->VisID = GameVisuals()->Visualize( GameVisualizer::PlayerXHandYDealtCardZ, visData );
+				GameVisuals()->Visualize( GameVisualizer::PlayerXHandYDealtCardZ, visData );
 
 				m_taskState.StepNumber = 11;
 			}
 			// WAIT FOR DOUBLE PLAYER CARD VISUALIZATION COMPLETION
 		case 11:
 			{
-				if( GameVisuals()->VisualizationComplete( pTaskData->VisID ) )
+				if( GameVisuals()->VisualizationsComplete() )
 				{
 					m_taskState.StepNumber = 17;
 				}
@@ -492,14 +492,14 @@ namespace BlackJack
 				visData.PlayerNum = pTaskData->PlayerNumber;
 				visData.HandIndex = pTaskData->HandIndex;
 
-				pTaskData->VisID = GameVisuals()->Visualize( GameVisualizer::PlayerXHandYSplit, visData );
+				GameVisuals()->Visualize( GameVisualizer::PlayerXHandYSplit, visData );
 
 				m_taskState.StepNumber = 13;
 			}
 			// WAIT FOR CARD SPLIT VISUALIZATION COMPLETION
 		case 13:
 			{
-				if( GameVisuals()->VisualizationComplete( pTaskData->VisID ) )
+				if( GameVisuals()->VisualizationsComplete() )
 				{
 					// Don't increment player/index, since need to repeat processing on split hand.
 					m_taskState.StepNumber = 2;
@@ -520,14 +520,14 @@ namespace BlackJack
 				GameVisualizer::VisualizationData visData;
 				visData.PlayerNum = pTaskData->PlayerNumber;
 
-				pTaskData->VisID = GameVisuals()->Visualize( GameVisualizer::PlayerXSurrender, visData );
+				GameVisuals()->Visualize( GameVisualizer::PlayerXSurrender, visData );
 
 				m_taskState.StepNumber = 16;
 			}
 			// WAIT FOR SURRENDER VISUALIZATION COMPLETION
 		case 16:
 			{
-				if( GameVisuals()->VisualizationComplete( pTaskData->VisID ) )
+				if( GameVisuals()->VisualizationsComplete() )
 				{
 					m_taskState.StepNumber = 17;
 				}
@@ -594,14 +594,14 @@ namespace BlackJack
 				GameVisualizer::VisualizationData visData;
 				visData.DealerCard = card;
 
-				pTaskData->VisID = GameVisuals()->Visualize( GameVisualizer::DealerDeltCardX, visData );
+				GameVisuals()->Visualize( GameVisualizer::DealerDeltCardX, visData );
 
 				m_taskState.StepNumber = 4;
 			}
 			// WAIT FOR DEALER CARD VISUALIZATION TO COMPLETE
 		case 4:
 			{
-				if( GameVisuals()->VisualizationComplete( pTaskData->VisID ) )
+				if( GameVisuals()->VisualizationsComplete() )
 				{
 					m_taskState.StepNumber = 2;
 				}
@@ -615,12 +615,12 @@ namespace BlackJack
 				// Visualize hole card reveal
 				GameVisualizer::VisualizationData visData;
 
-				pTaskData->VisID = GameVisuals()->Visualize( GameVisualizer::DealerRevealHole, visData );
+				GameVisuals()->Visualize( GameVisualizer::DealerRevealHole, visData );
 			}
 			// WAIT FOR DEALER HOLE REVEAL VISUALIZATION COMPLETION 
 		case 6:
 			{
-				if( GameVisuals()->VisualizationComplete( pTaskData->VisID ) )
+				if( GameVisuals()->VisualizationsComplete() )
 				{
 					return true;
 				}
@@ -668,12 +668,12 @@ namespace BlackJack
 						GameMgr()->GetPlayerList()[ pTaskData->PlayerNumber - 1 ]->AddChips( 
 							GameMgr()->GetPlayerList()[ pTaskData->PlayerNumber - 1 ]->GetCurrentBet( pTaskData->HandIndex ) );
 
-						pTaskData->VisID = GameVisuals()->Visualize( GameVisualizer::PlayerXPushedHandY, visData );
+						GameVisuals()->Visualize( GameVisualizer::PlayerXPushedHandY, visData );
 					}
 					else
 					{
 						// Lost hand, don't recuperate bet.
-						pTaskData->VisID = GameVisuals()->Visualize( GameVisualizer::PlayerXLostHandY, visData );
+						GameVisuals()->Visualize( GameVisualizer::PlayerXLostHandY, visData );
 					}
 				}
 				else
@@ -690,7 +690,7 @@ namespace BlackJack
 
 						visData.Winnings = winnings;
 
-						pTaskData->VisID = GameVisuals()->Visualize( GameVisualizer::PlayerXWonHandYWinningZ, visData );
+						GameVisuals()->Visualize( GameVisualizer::PlayerXWonHandYWinningZ, visData );
 					}
 					else if( GameMgr()->GetPlayerList()[ pTaskData->PlayerNumber - 1 ]->GetHandValue( pTaskData->HandIndex ) > GameMgr()->GetDealerAI().GetHandValue() )
 					{
@@ -700,7 +700,7 @@ namespace BlackJack
 
 						visData.Winnings = winnings;
 
-						pTaskData->VisID = GameVisuals()->Visualize( GameVisualizer::PlayerXWonHandYWinningZ, visData );
+						GameVisuals()->Visualize( GameVisualizer::PlayerXWonHandYWinningZ, visData );
 					}
 					else if( GameMgr()->GetPlayerList()[ pTaskData->PlayerNumber - 1 ]->GetHandValue( pTaskData->HandIndex ) == GameMgr()->GetDealerAI().GetHandValue() )
 					{
@@ -708,12 +708,12 @@ namespace BlackJack
 						GameMgr()->GetPlayerList()[ pTaskData->PlayerNumber - 1 ]->AddChips( 
 							GameMgr()->GetPlayerList()[ pTaskData->PlayerNumber - 1 ]->GetCurrentBet( pTaskData->HandIndex ) );
 
-						pTaskData->VisID = GameVisuals()->Visualize( GameVisualizer::PlayerXPushedHandY, visData );
+						GameVisuals()->Visualize( GameVisualizer::PlayerXPushedHandY, visData );
 					}
 					else
 					{
 						// Lost hand, don't recuperate bet
-						pTaskData->VisID = GameVisuals()->Visualize( GameVisualizer::PlayerXLostHandY, visData );
+						GameVisuals()->Visualize( GameVisualizer::PlayerXLostHandY, visData );
 					}
 				}
 
@@ -725,7 +725,7 @@ namespace BlackJack
 			// WAIT FOR RESULT VISUALIZATION COMPLETION
 		case 4:
 			{
-				if( GameVisuals()->VisualizationComplete( pTaskData->VisID ) )
+				if( GameVisuals()->VisualizationsComplete() )
 				{
 					m_taskState.StepNumber = 5;
 				}

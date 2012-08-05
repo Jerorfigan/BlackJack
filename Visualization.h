@@ -13,8 +13,8 @@ namespace BlackJack
 		/************/
 		/* Typedefs */
 		/************/
-	public:
-		typedef std::size_t ID;
+	private:
+		typedef std::vector< DynamicImage* > DynamicImageList;
 
 		/********************/
 		/* Internal Classes */
@@ -39,6 +39,14 @@ namespace BlackJack
 		void Draw();
 
 		bool Complete();
+
+		~Visualization();
+
+		/********/
+		/* Data */
+		/********/
+	private:
+		DynamicImageList    m_dynamicImages;
 	};
 
 }

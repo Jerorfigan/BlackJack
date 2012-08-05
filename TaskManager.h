@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Globals.h"
-#include "Visualization.h"
 
 namespace BlackJack
 {
@@ -29,7 +28,6 @@ namespace BlackJack
 		{
 			uint			     PlayerNumber;
 			uint                 HandIndex;
-			Visualization::ID    VisID;
 		};
 
 		/****************/

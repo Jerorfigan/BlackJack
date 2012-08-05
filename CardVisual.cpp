@@ -22,7 +22,7 @@ namespace BlackJack
 		// First create the dynamic image definition
 		DynamicImage::DynamicImageDef dynamicImgDef;
 		Transform transform;
-		transform.m_imagePath = "Data\CardSheet.png";
+		transform.m_imagePath = "Data\\CardSheet.png";
 		transform.m_subrect.left = ((uint)m_card.m_value - 1) * 111 + ((uint)m_card.m_value - 1) * 1;
 		transform.m_subrect.right = ((uint)m_card.m_value) * 111 + ((uint)m_card.m_value - 1) * 1;
 		transform.m_subrect.top = ((uint)m_card.m_suit - 1) * 155 + ((uint)m_card.m_suit - 1) * 1;
@@ -72,7 +72,7 @@ namespace BlackJack
 		// First create the dynamic image definition
 		DynamicImage::DynamicImageDef dynamicImgDef;
 		Transform transform;
-		transform.m_imagePath = "Data\CardSheet.png";
+		transform.m_imagePath = "Data\\CardSheet.png";
 		transform.m_subrect.left = ((uint)m_card.m_value - 1) * 111 + ((uint)m_card.m_value - 1) * 1;
 		transform.m_subrect.right = ((uint)m_card.m_value) * 111 + ((uint)m_card.m_value - 1) * 1;
 		transform.m_subrect.top = ((uint)m_card.m_suit - 1) * 155 + ((uint)m_card.m_suit - 1) * 1;

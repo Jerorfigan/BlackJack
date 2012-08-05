@@ -115,6 +115,7 @@
     <ClCompile Include="CardVisual.cpp" />
     <ClCompile Include="Dealer.cpp" />
     <ClCompile Include="DealerAI.cpp" />
+    <ClCompile Include="DynamicImage.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameVisualizer.cpp" />
     <ClCompile Include="Globals.cpp" />
@@ -130,6 +131,7 @@
     </ClCompile>
     <ClCompile Include="TaskManager.cpp" />
     <ClCompile Include="UserPlayer.cpp" />
+    <ClCompile Include="Visualization.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
