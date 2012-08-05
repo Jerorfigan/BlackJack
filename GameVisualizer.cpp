@@ -118,14 +118,11 @@ namespace BlackJack
 	////////////
 	void GameVisualizer::Update()
 	{
-		float elapsedTime = m_highResTimer.GetElapsedTimeMilli();
-		m_highResTimer.Reset();
-
 		// Update the player visuals
 		for( PlayerVisualList::iterator playerVisualItr = m_playerVisuals.begin();
 			 playerVisualItr != m_playerVisuals.end(); ++playerVisualItr )
 		{
-			(*playerVisualItr)->Update( elapsedTime );
+			(*playerVisualItr)->Update();
 		}
 	}
 

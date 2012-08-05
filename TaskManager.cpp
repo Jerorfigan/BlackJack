@@ -335,6 +335,7 @@ namespace BlackJack
 						{
 							taskComplete = false;
 							pTaskData->PlayerNumber = 1;
+							m_taskState.StepNumber = 3;
 							break;
 						}
 					}
@@ -356,6 +357,7 @@ namespace BlackJack
 					m_taskState.StepNumber = 17;
 				}
 			}
+			break;
 			// TELL PLAYER TO SELECT PLAY DECISION
 		case 4:
 			{
@@ -413,6 +415,8 @@ namespace BlackJack
 				visData.PlayerCard = card;
 
 				GameVisuals()->Visualize( GameVisualizer::PlayerXHandYDealtCardZ, visData );
+
+				m_taskState.StepNumber = 7;
 			}
 			// WAIT FOR HIT PLAYER VISUALIZATION COMPLETION
 		case 7:
@@ -536,9 +540,10 @@ namespace BlackJack
 			// INCREMENT PLAYER & HAND INDEX
 		case 17:
 			{
-				if( pTaskData->HandIndex + 1 > GameMgr()->GetPlayerList()[ pTaskData->PlayerNumber - 1  ]->GetNumHands() )
+				if( pTaskData->HandIndex + 1 >= GameMgr()->GetPlayerList()[ pTaskData->PlayerNumber - 1  ]->GetNumHands() )
 				{
-					pTaskData->PlayerNumber += 1;	
+					pTaskData->PlayerNumber += 1;
+					pTaskData->HandIndex = 0;
 				}
 				else
 				{
@@ -652,6 +657,9 @@ namespace BlackJack
 			{
 				if( pTaskData->PlayerNumber > GameMgr()->GetGameConfiguration().NumPlayers )
 				{
+					// Kill the cards on the table
+					GameMgr()->GetDealer().KillCards();
+
 					return true;
 				}
 			}
@@ -734,9 +742,10 @@ namespace BlackJack
 			// INCREMENT PLAYER NUMBER & HAND INDEX
 		case 5:
 			{
-				if( pTaskData->HandIndex + 1 > GameMgr()->GetPlayerList()[ pTaskData->PlayerNumber - 1  ]->GetNumHands() )
+				if( pTaskData->HandIndex + 1 >= GameMgr()->GetPlayerList()[ pTaskData->PlayerNumber - 1  ]->GetNumHands() )
 				{
-					pTaskData->PlayerNumber += 1;	
+					pTaskData->PlayerNumber += 1;
+					pTaskData->HandIndex = 0;
 				}
 				else
 				{

@@ -8,7 +8,7 @@ namespace BlackJack
 	/***************/
 	/* Static Data */
 	/***************/
-	GameUtilities::Point2D    HandVisual::m_cardOffset( -20.0f, 20.0f );
+	GameUtilities::Point2D    HandVisual::m_cardOffset( 20.0f, -20.0f );
 
 	/****************/
 	/* Constructors */
@@ -58,13 +58,13 @@ namespace BlackJack
 	// Update //
 	////////////
 	void           
-	HandVisual::Update( float elapsedTime )
+	HandVisual::Update()
 	{
 		// Update card visuals
 		for( CardVisualList::iterator cardVisualItr = m_cardVisuals.begin(); 
 			 cardVisualItr != m_cardVisuals.end(); ++cardVisualItr )
 		{
-			(*cardVisualItr)->Update( elapsedTime );
+			(*cardVisualItr)->Update();
 		}
 	}
 

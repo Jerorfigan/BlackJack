@@ -61,13 +61,13 @@ namespace BlackJack
 	// Update //
 	////////////
 	void 
-	PlayerVisual::Update( float elapsedTime )
+	PlayerVisual::Update()
 	{
 		// Update all the hands
 		for( HandVisualList::iterator handVisualItr = m_handVisuals.begin();
 			 handVisualItr != m_handVisuals.end(); ++handVisualItr )
 		{
-			(*handVisualItr)->Update( elapsedTime );
+			(*handVisualItr)->Update();
 		}
 	}
 

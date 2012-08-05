@@ -31,7 +31,7 @@ namespace BlackJack
 	public:
 		void    ChangePosition( GameUtilities::Point2D newPosition );
 
-		void    Update( float elapsedTime );
+		void    Update();
 		void    Draw();
 
 		~CardVisual();

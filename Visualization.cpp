@@ -26,13 +26,13 @@ namespace BlackJack
 	// Update //
 	////////////
 	void 
-	Visualization::Update( float elapsedTime )
+	Visualization::Update()
 	{
 		// Update dynamic images
 		for( DynamicImageList::iterator dynamicImgItr = m_dynamicImages.begin();
 			 dynamicImgItr != m_dynamicImages.end(); ++dynamicImgItr )
 		{
-			(*dynamicImgItr)->Update( elapsedTime );
+			(*dynamicImgItr)->Update();
 		}
 	}
 	

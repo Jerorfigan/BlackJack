@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "Dealer.h"
+#include "GameError.h"
 
 namespace BlackJack
 {
@@ -41,11 +42,30 @@ namespace BlackJack
 	void 
 	Dealer::GetRandomCard( Card &card )
 	{
-		// Select a random deck to draw the card from
-		uint deckIndex = RandomBetween( 0, m_drawCards.size() - 1 );
+		// Safety check: make sure there is at least one card to deal
+		uint cardsRemaining = 0;
+		for( CardIndexListByDeck::iterator cardIndexListItr = m_drawCards.begin(); 
+			 cardIndexListItr != m_drawCards.end(); ++cardIndexListItr )
+			 cardsRemaining += cardIndexListItr->size();
+		if( cardsRemaining == 0 )
+			throw GameError( "[Dealer::GetRandomCard]: No cards to deal. " );
 
-		// Select a random entry from the draw card index list for this deck
-		uint selectedEntryNum = RandomBetween( 1, m_drawCards[ deckIndex ].size() );
+		uint deckIndex;
+		uint selectedEntryNum = 9999;
+
+		do
+		{
+			// Select a random deck to draw the card from
+			deckIndex = RandomBetween( 0, m_drawCards.size() - 1 );
+
+			// Select a random entry from the draw card index list for this deck
+			// if it has at least entry present.
+			if( m_drawCards[ deckIndex ].size() > 0 )
+			{
+				selectedEntryNum = RandomBetween( 1, m_drawCards[ deckIndex ].size() );
+			}
+		}
+		while( selectedEntryNum == 9999 );
 		
 		// Iterate through the list of draw card indexes for this deck to find the selected entry
 		uint cardIndex;
@@ -69,11 +89,7 @@ namespace BlackJack
 		card.m_value = m_deck[ cardIndex ].m_value;
 
 		// Check to see if we need to reshuffle
-		uint cardsRemaining = 0;
-		for( CardIndexListByDeck::iterator cardIndexListItr = m_drawCards.begin(); 
-			 cardIndexListItr != m_drawCards.end(); ++cardIndexListItr )
-			 cardsRemaining += cardIndexListItr->size();
-		if( cardsRemaining < m_drawCards.size() * 52 * ( m_reshufflePoint / 100.0f ) )
+		if( --cardsRemaining < m_drawCards.size() * 52 * ( m_reshufflePoint / 100.0f ) )
 		{
 			Reshuffle();
 		}

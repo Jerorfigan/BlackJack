@@ -38,7 +38,7 @@ namespace BlackJack
 		transform.m_startAlpha = 1;
 		transform.m_endAlpha = 1;
 		transform.m_startZDepth = 0;
-		transform.m_startZDepth = 1 - 0.01f * m_cardNum;
+		transform.m_startZDepth = 1 - 0.05f * m_cardNum;
 
 		dynamicImgDef.m_transforms.push_back( transform );
 
@@ -106,9 +106,9 @@ namespace BlackJack
 	// Update //
 	////////////
 	void    
-	CardVisual::Update( float elapsedTime )
+	CardVisual::Update()
 	{
-		m_pVisualization->Update( elapsedTime );
+		m_pVisualization->Update();
 	}
 
 	//////////

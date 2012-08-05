@@ -35,15 +35,20 @@ namespace BlackJack
 	// Update //
 	////////////
 	void 
-	DynamicImage::Update( float elapsedTime )
+	DynamicImage::Update()
 	{
 		if( m_isAnimating )
 		{
-			if( m_runTimer.GetElapsedTimeSec() > m_transforms[ m_transformIndex ].m_delay )
+			float elapsedTime = m_runTimer.GetElapsedTimeSec();
+			if( elapsedTime > m_transforms[ m_transformIndex ].m_delay )
 			{
-				if( m_runTimer.GetElapsedTimeSec() > m_transforms[ m_transformIndex ].m_delay + 
+				if( elapsedTime > m_transforms[ m_transformIndex ].m_delay + 
 													 m_transforms[ m_transformIndex ].m_duration )
 				{
+					GameUtilities::IGraphicsProvider::SpriteInfo spriteInfo = InterpolateSpriteInfo( 1.0f );
+
+					ServProvider()->GetGraphicsProvider()->SetSprite( m_spriteCollectionID, "sprite", spriteInfo );
+
 					// Once we've burned through all the transforms, we're done animating.
 					if( ++m_transformIndex >= m_transforms.size() )
 					{
@@ -51,14 +56,11 @@ namespace BlackJack
 						return;
 					}
 
-					GameUtilities::IGraphicsProvider::SpriteInfo spriteInfo = InterpolateSpriteInfo();
-
-					ServProvider()->GetGraphicsProvider()->SetSprite( m_spriteCollectionID, "sprite", spriteInfo );
 					m_runTimer.Reset();
 				}
 				else
 				{
-					float interpolation = ( m_runTimer.GetElapsedTimeSec() - m_transforms[ m_transformIndex ].m_delay ) / m_transforms[ m_transformIndex ].m_duration;
+					float interpolation = ( elapsedTime - m_transforms[ m_transformIndex ].m_delay ) / m_transforms[ m_transformIndex ].m_duration;
 					GameUtilities::IGraphicsProvider::SpriteInfo spriteInfo = InterpolateSpriteInfo( interpolation );
 					ServProvider()->GetGraphicsProvider()->SetSprite( m_spriteCollectionID, "sprite", spriteInfo );
 				}

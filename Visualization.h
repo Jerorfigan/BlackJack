@@ -35,7 +35,7 @@ namespace BlackJack
 		/* Methods */
 		/***********/
 	public:
-		void Update( float elapsedTime );
+		void Update();
 		void Draw();
 
 		bool Complete();

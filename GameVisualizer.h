@@ -8,7 +8,6 @@
 #include "Card.h"
 #include "Visualization.h"
 #include "PlayerVisual.h"
-#include "..\GameUtilities\HighResolutionTimer.h"
 
 namespace BlackJack
 {
@@ -127,7 +126,6 @@ namespace BlackJack
 		/* Data */
 		/********/
 	private:
-		GameUtilities::HighResolutionTimer    m_highResTimer;
 		VisualizationList                     m_activeVisualizations;
 		PlayerVisualList					  m_playerVisuals;
 

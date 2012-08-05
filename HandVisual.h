@@ -37,7 +37,7 @@ namespace BlackJack
 		void           AddSplitCard( CardVisual *splitCardVisual );
 		CardVisual*    SplitHand();
 
-		void           Update( float elapsedTime );
+		void           Update();
 		void           Draw();
 
 		~HandVisual();
