@@ -63,12 +63,13 @@ namespace BlackJack
 		/***********/
 		void Application::Init()
 		{
-			InitApp();
+			InitAppPreServices();
 			InitPrimaryWindow();
 			InitGraphics();
 			InitInput();
 			InitSound();
 			InitExtraSubsystems();
+			InitAppPostServices();
 		}
 
 		void Application::Run()
@@ -115,7 +116,40 @@ namespace BlackJack
 		/*******************/
 		/* Virtual Methods */
 		/*******************/
-		void Application::InitApp()
+		void Application::InitAppPreServices()
+		{
+
+		}
+
+		void Application::InitPrimaryWindow()
+		{
+			new Window( m_title, m_wndWidth, m_wndHeight );
+
+			GetWnd()->RegisterClass();
+			GetWnd()->InitInstance();
+		}
+
+		void Application::InitGraphics()
+		{
+			
+		}
+
+		void Application::InitInput()
+		{
+
+		}
+
+		void Application::InitSound()
+		{
+
+		}
+
+		void Application::InitExtraSubsystems()
+		{
+
+		}
+
+		void Application::InitAppPostServices()
 		{
 
 		}
@@ -151,34 +185,6 @@ namespace BlackJack
 			{
 				throw GameError( "[Application::DoIdleFrame]: Call to IDirect3DDevice9::TestCooperativeLevel returned D3DERR_DRIVERINTERNALERROR." );
 			}*/
-		}
-
-		void Application::InitPrimaryWindow()
-		{
-			new Window( m_title, m_wndWidth, m_wndHeight );
-
-			GetWnd()->RegisterClass();
-			GetWnd()->InitInstance();
-		}
-
-		void Application::InitGraphics()
-		{
-			
-		}
-
-		void Application::InitInput()
-		{
-
-		}
-
-		void Application::InitSound()
-		{
-
-		}
-
-		void Application::InitExtraSubsystems()
-		{
-
 		}
 
 		/**************/

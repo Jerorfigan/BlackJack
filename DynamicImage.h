@@ -42,6 +42,8 @@ namespace BlackJack
 
 		bool    IsAnimating();
 
+		~DynamicImage();
+
 	private:
 		GameUtilities::IGraphicsProvider::SpriteInfo    InterpolateSpriteInfo( float interpolation = 0 );
 

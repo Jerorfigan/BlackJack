@@ -130,6 +130,9 @@
     <ClInclude Include="PlayerVisual.h">
       <Filter>GameClasses\Visualization</Filter>
     </ClInclude>
+    <ClInclude Include="GameBoardVisual.h">
+      <Filter>GameClasses\Visualization</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -193,6 +196,9 @@
       <Filter>GameClasses\Visualization</Filter>
     </ClCompile>
     <ClCompile Include="DynamicImage.cpp">
+      <Filter>GameClasses\Visualization</Filter>
+    </ClCompile>
+    <ClCompile Include="GameBoardVisual.cpp">
       <Filter>GameClasses\Visualization</Filter>
     </ClCompile>
   </ItemGroup>

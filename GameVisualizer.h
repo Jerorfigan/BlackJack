@@ -8,6 +8,7 @@
 #include "Card.h"
 #include "Visualization.h"
 #include "PlayerVisual.h"
+#include "GameBoardVisual.h"
 
 namespace BlackJack
 {
@@ -126,8 +127,9 @@ namespace BlackJack
 		/* Data */
 		/********/
 	private:
-		VisualizationList                     m_activeVisualizations;
-		PlayerVisualList					  m_playerVisuals;
+		VisualizationList    m_activeVisualizations;
+		PlayerVisualList	 m_playerVisuals;
+		GameBoardVisual      m_gameBoardVisual;
 
 		/***********************/
 		/* Friend Declarations */

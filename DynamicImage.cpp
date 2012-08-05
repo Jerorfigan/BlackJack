@@ -84,6 +84,11 @@ namespace BlackJack
 		return m_isAnimating;
 	}
 
+	DynamicImage::~DynamicImage()
+	{
+		ServProvider()->GetGraphicsProvider()->DestroySpriteCollection( m_spriteCollectionID );
+	}
+
 	/////////////////////////////
 	// SpriteInfoFromTransfrom //
 	/////////////////////////////

@@ -91,6 +91,10 @@ namespace BlackJack
 		{
 			 delete *playerItr;
 		}
+
+		/* Destroy game visualizer and input singletons */
+		GameInput::Destroy();
+		GameVisualizer::Destroy();
 	}
 
 	/******************/

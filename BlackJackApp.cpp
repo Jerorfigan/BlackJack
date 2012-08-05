@@ -28,15 +28,14 @@ namespace BlackJack
 	/*******************/
 	/* Virtual methods */
 	/*******************/
-	
+		
 	/////////////
 	// InitApp //
 	/////////////
 	void 
-	BlackJackApp::InitApp()
+	BlackJackApp::InitAppPreServices()
 	{
 		ServiceProvider::Create();
-		GameManager::Create();
 	}
 
 	//////////////////
@@ -55,6 +54,15 @@ namespace BlackJack
 	BlackJackApp::InitInput()
 	{
 		ServProvider()->RegisterInputProvider( new GameUtilities::DirectInputInputProvider( GetAppInstance(), GetWnd()->GetHandle(), true ) );
+	}
+
+	/////////////////////////
+	// InitAppPostServices //
+	/////////////////////////
+	void 
+	BlackJackApp::InitAppPostServices()
+	{
+		GameManager::Create();
 	}
 
 	/////////////
@@ -145,8 +153,8 @@ namespace BlackJack
 	/**************/
 	BlackJackApp::~BlackJackApp()
 	{
-		ServiceProvider::Destroy();
 		GameManager::Destroy();
+		ServiceProvider::Destroy();
 	}
 
 }

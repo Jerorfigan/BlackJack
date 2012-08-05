@@ -24,9 +24,10 @@ namespace BlackJack
 		/* Virtual methods */
 		/*******************/
 	private:
-		virtual void InitApp();
+		virtual void InitAppPreServices();
 		virtual void InitGraphics();
 		virtual void InitInput();
+		virtual void InitAppPostServices();
 
 		virtual void DoFrame();
 

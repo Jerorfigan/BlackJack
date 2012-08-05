@@ -38,6 +38,7 @@ namespace BlackJack
 		{
 		case GameBoard:
 			{
+				m_gameBoardVisual.SetVisibility( true );
 			}
 			break;
 		case PlayerXHandYMadeBetZ:
@@ -135,6 +136,9 @@ namespace BlackJack
 		ServProvider()->GetGraphicsProvider()->ClearBackbuffer();
 		ServProvider()->GetGraphicsProvider()->BeginScene();
 		ServProvider()->GetGraphicsProvider()->StartSpriteBatch();
+
+		// Draw game board
+		m_gameBoardVisual.Draw();
 
 		// Draw the player visuals
 		for( PlayerVisualList::iterator playerVisualItr = m_playerVisuals.begin();

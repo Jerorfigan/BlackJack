@@ -88,6 +88,7 @@
     <ClInclude Include="DealerConfiguration.h" />
     <ClInclude Include="Deck.h" />
     <ClInclude Include="DynamicImage.h" />
+    <ClInclude Include="GameBoardVisual.h" />
     <ClInclude Include="Hand.h" />
     <ClInclude Include="HandVisual.h" />
     <ClInclude Include="Player.h" />
@@ -116,6 +117,7 @@
     <ClCompile Include="Dealer.cpp" />
     <ClCompile Include="DealerAI.cpp" />
     <ClCompile Include="DynamicImage.cpp" />
+    <ClCompile Include="GameBoardVisual.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameVisualizer.cpp" />
     <ClCompile Include="Globals.cpp" />
