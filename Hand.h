@@ -20,8 +20,8 @@ namespace BlackJack
 		/* Constructors */
 		/****************/
 	public:
-		Hand();
-		Hand( const Card &card );
+		Hand( uint handNum );
+		Hand( const Card &card, uint handNum );
 
 		/***********/
 		/* Methods */
@@ -29,6 +29,7 @@ namespace BlackJack
 	public:
 		void AddCard( const Card &card );
 		Card RemoveTopCard();
+		void Reset();
 
 		/* Returns true if value is soft, false if hard. */
 		bool GetValue( uint &value ) const;
@@ -51,6 +52,8 @@ namespace BlackJack
 		/********/
 	private:
 		Cards    m_cards;
+		uint     m_handNum;
+		bool     m_hasSplit;
 	};
 
 	/***********/

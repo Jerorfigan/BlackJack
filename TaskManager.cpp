@@ -80,8 +80,41 @@ namespace BlackJack
 			{
 				if( ResolveBetsTask() )
 				{
-					// Do nothing, all done.
+					m_taskState.CurrentTask = PromptForNewGame;
+					m_taskState.StepNumber = 1;
 				}
+			}
+			break;
+		case PromptForNewGame:
+			{
+				bool newGame = false;
+
+				if( PromptForNewGameTask( newGame) )
+				{
+					if( newGame )
+					{
+						// Start game over.
+						GameVisuals()->Reset();
+						for( GameManager::PlayerList::iterator playerItr = GameMgr()->GetPlayerList().begin();
+							 playerItr != GameMgr()->GetPlayerList().end(); ++playerItr )
+						{
+							(*playerItr)->Reset();
+						}
+						GameMgr()->GetDealerAI().Reset();
+
+						m_taskState.CurrentTask = CollectBets;
+						m_taskState.StepNumber = 1;
+					}
+					else
+					{
+						m_taskState.CurrentTask = DoNothing;
+					}
+				}
+			}
+			break;
+		case DoNothing:
+			{
+
 			}
 			break;
 		}
@@ -483,20 +516,32 @@ namespace BlackJack
 			{
 				GameMgr()->GetPlayerList()[ pTaskData->PlayerNumber - 1  ]->SplitHand( pTaskData->HandIndex );
 
-				Card card;
-				card.m_orientation = Card::FaceUp;
-				GameMgr()->GetDealer().GetRandomCard( card );
-				GameMgr()->GetPlayerList()[ pTaskData->PlayerNumber - 1  ]->AddCardToHand( card, pTaskData->HandIndex );
-				GameMgr()->GetDealer().GetRandomCard( card );
-				GameMgr()->GetPlayerList()[ pTaskData->PlayerNumber - 1  ]->AddCardToHand( card, 
+				Card card1, card2;
+				card1.m_orientation = Card::FaceUp;
+				card2.m_orientation = Card::FaceUp;
+				GameMgr()->GetDealer().GetRandomCard( card1 );
+				GameMgr()->GetPlayerList()[ pTaskData->PlayerNumber - 1  ]->AddCardToHand( card1, pTaskData->HandIndex );
+				GameMgr()->GetDealer().GetRandomCard( card2 );
+				GameMgr()->GetPlayerList()[ pTaskData->PlayerNumber - 1  ]->AddCardToHand( card2, 
 					GameMgr()->GetPlayerList()[ pTaskData->PlayerNumber - 1  ]->GetNumHands() - 1 );
 
 				// Visualize card split
 				GameVisualizer::VisualizationData visData;
 				visData.PlayerNum = pTaskData->PlayerNumber;
 				visData.HandIndex = pTaskData->HandIndex;
-
 				GameVisuals()->Visualize( GameVisualizer::PlayerXHandYSplit, visData );
+
+				// Visualize new cards dealt
+				GameVisualizer::VisualizationData visData2;
+				visData2.PlayerNum = pTaskData->PlayerNumber;
+				visData2.HandIndex = pTaskData->HandIndex;
+				visData2.PlayerCard = card1;
+				GameVisuals()->Visualize( GameVisualizer::PlayerXHandYDealtCardZ, visData2 );
+				GameVisualizer::VisualizationData visData3;
+				visData3.PlayerNum = pTaskData->PlayerNumber;
+				visData3.HandIndex = GameMgr()->GetPlayerList()[ pTaskData->PlayerNumber - 1  ]->GetNumHands() - 1;
+				visData3.PlayerCard = card2;
+				GameVisuals()->Visualize( GameVisualizer::PlayerXHandYDealtCardZ, visData3 );
 
 				m_taskState.StepNumber = 13;
 			}
@@ -760,6 +805,50 @@ namespace BlackJack
 		}
 
 		return false;
+	}
+
+	//////////////////////
+	// PromptForNewGame //
+	//////////////////////
+	bool    
+	TaskManager::PromptForNewGameTask( bool &newGame )
+	{
+		TaskData *pTaskData;
+		pTaskData = (TaskData*) m_taskState.TaskData;
+
+		switch( m_taskState.StepNumber )
+		{
+			// TASK INITIALIZATION
+		case 1:
+			{
+				pTaskData->PlayerNumber = 1;
+			}
+			// VERIFY PLAYER
+		case 2:
+			{
+				if( pTaskData->PlayerNumber > GameMgr()->GetGameConfiguration().NumPlayers )
+				{
+					return true;
+				}
+
+				m_taskState.StepNumber = 3;
+			}
+			// ASK PLAYER IF HE'D LIKE A NEW GAME & WAIT FOR RESPONSE
+		case 3:
+			{
+				if( GameMgr()->GetPlayerList()[ pTaskData->PlayerNumber - 1 ]->PlayAgain( newGame ) )
+				{
+					m_taskState.StepNumber = 4;
+				}
+			}
+			break;
+			// INCREMENT PLAYER
+		case 4:
+			{
+				++pTaskData->PlayerNumber;
+			}
+			break;
+		}
 	}
 
 	/**************/

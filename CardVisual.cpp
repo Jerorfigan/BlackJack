@@ -14,8 +14,8 @@ namespace BlackJack
 	/****************/
 	/* Constructors */
 	/****************/
-	CardVisual::CardVisual( Card card, GameUtilities::Point2D position, uint cardNum ) :
-		m_card( card ), m_targetPosition( position ), m_cardNum( cardNum )
+	CardVisual::CardVisual( Card card, GameUtilities::Point2D position, uint cardNum, bool splitCard ) :
+		m_card( card ), m_targetPosition( position ), m_cardNum( cardNum ), m_splitCard( splitCard )
 	{
 		/* Create the card being dealt to player visualization */
 
@@ -46,13 +46,24 @@ namespace BlackJack
 		transform.m_startPosition = m_cardDeckPosition;
 		transform.m_endPosition = m_targetPosition;
 		transform.m_startRotation = 0;
-		transform.m_endRotation = 0;
+		if( m_card.m_orientation == Card::FaceUpSideways || m_card.m_orientation == Card::FaceDownSideways )
+			transform.m_endRotation = 90;
+		else
+			transform.m_endRotation = 0;
 		transform.m_startScaleX = 1;
 		transform.m_endScaleX = 1;
 		transform.m_startScaleY = 1;
 		transform.m_endScaleY = 1;
-		transform.m_startAlpha = 1;
-		transform.m_endAlpha = 1;
+		if( m_splitCard )
+		{
+			transform.m_startAlpha = 0.5f;
+			transform.m_endAlpha = 0.5f;
+		}
+		else
+		{
+			transform.m_startAlpha = 1;
+			transform.m_endAlpha = 1;
+		}
 		transform.m_startZDepth = 0;
 		transform.m_endZDepth = 1 - 0.01f * m_cardNum;
 
@@ -106,8 +117,16 @@ namespace BlackJack
 		transform.m_endScaleX = 1;
 		transform.m_startScaleY = 1;
 		transform.m_endScaleY = 1;
-		transform.m_startAlpha = 1;
-		transform.m_endAlpha = 1;
+		if( m_splitCard )
+		{
+			transform.m_startAlpha = 0.5f;
+			transform.m_endAlpha = 0.5f;
+		}
+		else
+		{
+			transform.m_startAlpha = 1;
+			transform.m_endAlpha = 1;
+		}
 		transform.m_startZDepth = 1 - 0.01f * m_cardNum;
 		transform.m_endZDepth = 1 - 0.01f * m_cardNum;
 

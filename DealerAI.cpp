@@ -9,7 +9,7 @@ namespace BlackJack
 	/***************/
 	/* Constructors */
 	/***************/
-	DealerAI::DealerAI()
+	DealerAI::DealerAI() : m_hand( 1 )
 	{
 	}
 
@@ -33,6 +33,15 @@ namespace BlackJack
 	DealerAI::RevealHoleCard()
 	{
 		m_hand[1].m_orientation = Card::FaceUp;
+	}
+
+	///////////
+	// Reset //
+	///////////
+	void 
+	DealerAI::Reset()
+	{
+		m_hand.Reset();
 	}
 
 	//////////////////

@@ -82,6 +82,17 @@ namespace BlackJack
 		m_handVisual.Draw();
 	}
 
+	///////////
+	// Reset //
+	///////////
+	void    
+	DealerVisual::Reset()
+	{
+		delete m_pHoleCard;
+		m_pHoleCard = NULL;
+		m_handVisual.Reset();
+	}
+
 	////////////////
 	// Destructor //
 	////////////////

@@ -23,7 +23,7 @@ namespace BlackJack
 		/* Constructors */
 		/****************/
 	public:
-		CardVisual( Card card, GameUtilities::Point2D position, uint cardNum );
+		CardVisual( Card card, GameUtilities::Point2D position, uint cardNum, bool splitCard = false );
 
 		/***********/
 		/* Methods */
@@ -47,7 +47,8 @@ namespace BlackJack
 		Visualization             *m_pVisualization;
 		Card                      m_card;
 		GameUtilities::Point2D    m_targetPosition;
-		uint                      m_cardNum;              
+		uint                      m_cardNum;   
+		bool                      m_splitCard;
 	};
 
 }

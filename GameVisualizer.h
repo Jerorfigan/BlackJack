@@ -133,6 +133,7 @@ namespace BlackJack
 		bool	VisualizationsComplete();
 		void    Update();
 		void    Draw();
+		void    Reset();
 
 		~GameVisualizer();
 

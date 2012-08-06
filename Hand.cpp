@@ -9,11 +9,11 @@ namespace BlackJack
 	/****************/
 	/* Constructors */
 	/****************/
-	Hand::Hand()
+	Hand::Hand( uint handNum ) : m_handNum( handNum ), m_hasSplit( false )
 	{
 	}
 
-	Hand::Hand( const Card &card )
+	Hand::Hand( const Card &card, uint handNum ) : m_handNum( handNum ), m_hasSplit( false )
 	{
 		m_cards.push_back( card );
 	}
@@ -37,9 +37,19 @@ namespace BlackJack
 	Card
 	Hand::RemoveTopCard()
 	{
+		m_hasSplit = true;
 		Card topCard = m_cards.back();
 		m_cards.pop_back();
 		return topCard;
+	}
+
+	///////////
+	// Reset //
+	///////////
+	void 
+	Hand::Reset()
+	{
+		m_cards.clear();
 	}
 
 	//////////////
@@ -81,7 +91,7 @@ namespace BlackJack
 	Hand::CanSplit() const
 	{
 		// Can split if hand has 2 cards of equal value (all face cards count as 10)
-		return ( GameMgr()->GetGameConfiguration().AllowSplit && m_cards.size() == 2 && 
+		return ( m_handNum == 1 && !m_hasSplit && GameMgr()->GetGameConfiguration().AllowSplit && m_cards.size() == 2 && 
 			( m_cards[0].m_value == m_cards[1].m_value || 
 			( ( m_cards[0].m_value == Card::King || m_cards[0].m_value == Card::Queen || m_cards[0].m_value == Card::Jack || m_cards[0].m_value == Card::Ten ) && 
 			( m_cards[1].m_value == Card::King || m_cards[1].m_value == Card::Queen || m_cards[1].m_value == Card::Jack || m_cards[1].m_value == Card::Ten ) ) ) );

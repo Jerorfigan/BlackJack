@@ -33,6 +33,7 @@ namespace BlackJack
 		void		  AddChips( uint chips );
 		void		  SubtractChips( uint chips );
 		void		  ClearBet( uint handIndex );
+		void          Reset();
 
 		HandStatus    GetHandStatus( uint handIndex ) const;
 		uint		  GetCurrentBet( uint handIndex ) const;
@@ -53,6 +54,7 @@ namespace BlackJack
 	public:
 		virtual bool    CreateStartingBet() = 0;
 		virtual bool    SelectHandStatus( uint handIndex ) = 0;
+		virtual bool    PlayAgain( bool &again ) = 0;
 
 		/********/
 		/* Data */

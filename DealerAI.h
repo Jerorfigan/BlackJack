@@ -21,6 +21,7 @@ namespace BlackJack
 	public:
 		void AddCardToHand( const Card &card );
 		void RevealHoleCard();
+		void Reset();
 
 		uint GetNumCards() const;
 		uint GetHandValue() const;

@@ -191,6 +191,23 @@ namespace BlackJack
 		ServProvider()->GetGraphicsProvider()->Flip();
 	}
 
+	///////////
+	// Reset //
+	///////////
+	void    
+	GameVisualizer::Reset()
+	{
+		// Reset dealer
+		m_dealerVisual.Reset();
+	
+		// ResetPlayers
+		for( PlayerVisualList::iterator playerVisualItr = m_playerVisuals.begin();
+			 playerVisualItr != m_playerVisuals.end(); ++playerVisualItr )
+		{
+			(*playerVisualItr)->Reset();
+		}
+	}
+
 	////////////////
 	// Destructor //
 	////////////////

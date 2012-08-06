@@ -8,12 +8,13 @@ namespace BlackJack
 	/***************/
 	/* Static Data */
 	/***************/
+	GameUtilities::Point2D    HandVisual::m_splitOffset( 65.0f, 0.0f );
 	GameUtilities::Point2D    HandVisual::m_cardOffset( 20.0f, -5.0f );
 
 	/****************/
 	/* Constructors */
 	/****************/
-	HandVisual::HandVisual( GameUtilities::Point2D position ) : m_position( position )
+	HandVisual::HandVisual( GameUtilities::Point2D position, bool isSplitHand ) : m_position( position ), m_isSplitHand( isSplitHand )
 	{
 	}
 
@@ -29,7 +30,7 @@ namespace BlackJack
 	{
 		GameUtilities::Point2D offset = static_cast< float >( m_cardVisuals.size() ) * m_cardOffset;
 
-		m_cardVisuals.push_back( new CardVisual( card, m_position + offset, m_cardVisuals.size() + 1 ) );
+		m_cardVisuals.push_back( new CardVisual( card, m_position + offset, m_cardVisuals.size() + 1, m_isSplitHand ) );
 	}
 
 	//////////////////
@@ -49,6 +50,10 @@ namespace BlackJack
 	CardVisual*    
 	HandVisual::SplitHand()
 	{
+		m_position = m_position + m_splitOffset;
+
+		m_cardVisuals[0]->ChangePosition( m_position );
+
 		CardVisual *pCardVisual = m_cardVisuals[ 1 ];
 		m_cardVisuals.pop_back();
 		return pCardVisual;
@@ -80,6 +85,15 @@ namespace BlackJack
 		{
 			(*cardVisualItr)->Draw();
 		}
+	}
+
+	///////////
+	// Reset //
+	///////////
+	void           
+	HandVisual::Reset()
+	{
+		m_cardVisuals.clear();
 	}
 
 	////////////////

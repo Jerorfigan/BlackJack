@@ -11,7 +11,7 @@ namespace BlackJack
 		/* Enums */
 		/*********/
 	public:
-		enum Task { CollectBets, DealFirstCard, DealSecondCard, QueryPlayers, ResolveDealerHand, ResolveBets };
+		enum Task { CollectBets, DealFirstCard, DealSecondCard, QueryPlayers, ResolveDealerHand, ResolveBets, PromptForNewGame, DoNothing };
 
 		/********************/
 		/* Internal classes */
@@ -54,6 +54,7 @@ namespace BlackJack
 		bool    QueryPlayersTask();
 		bool    ResolveDealerHandTask();
 		bool    ResolveBetsTask();
+		bool    PromptForNewGameTask( bool &newGame );
 
 		/**************/
 		/* Destructor */

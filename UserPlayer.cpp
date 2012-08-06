@@ -11,6 +11,9 @@ namespace BlackJack
 	/* Virtual methods */
 	/*******************/
 
+	///////////////////////
+	// CreateStartingBet //
+	///////////////////////
 	bool    
 	UserPlayer::CreateStartingBet()
 	{
@@ -63,6 +66,9 @@ namespace BlackJack
 		return inputReceived;
 	}
 
+	//////////////////////
+	// SelectHandStatus //
+	//////////////////////
 	bool    
 	UserPlayer::SelectHandStatus( uint handIndex )
 	{
@@ -105,4 +111,32 @@ namespace BlackJack
 		return inputReceived;
 	}
 
+	///////////////
+	// PlayAgain //
+	///////////////
+	bool    
+	UserPlayer::PlayAgain( bool &again )
+	{
+		GameInput::InputData inpData;
+
+		inpData.prompt = "Play again?";
+
+		inpData.choices.push_back( "Yes" );
+		inpData.choices.push_back( "No" );
+
+		inpData.hotKeys.push_back( 'y' );
+		inpData.hotKeys.push_back( 'n' );
+
+		bool inputReceived = GameInp()->GetInput( m_playerNum, GameInput::TextPrompt, inpData );
+
+		if( inputReceived )
+		{
+			if( inpData.selectedChoice == "Yes" )
+				again = true;
+			else
+				again = false;
+		}
+
+		return inputReceived;
+	}
 }

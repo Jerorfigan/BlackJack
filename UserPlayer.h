@@ -19,7 +19,8 @@ namespace BlackJack
 		/*******************/
 	public:
 		virtual bool    CreateStartingBet();
-		virtual bool    SelectHandStatus( uint handIndex );       
+		virtual bool    SelectHandStatus( uint handIndex );   
+		virtual bool    PlayAgain( bool &again );
 	};
 
 }

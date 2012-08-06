@@ -20,6 +20,8 @@ namespace BlackJack
 		/***************/
 		/* Static Data */
 		/***************/
+	public:
+		static GameUtilities::Point2D    m_splitOffset;
 	private:
 		static GameUtilities::Point2D    m_cardOffset;
 
@@ -27,7 +29,7 @@ namespace BlackJack
 		/* Constructors */
 		/****************/
 	public:
-		HandVisual( GameUtilities::Point2D position );
+		HandVisual( GameUtilities::Point2D position, bool isSplitHand = false );
 
 		/***********/
 		/* Methods */
@@ -40,6 +42,8 @@ namespace BlackJack
 		void           Update();
 		void           Draw();
 
+		void           Reset();
+
 		uint           GetCardCount();
 
 		~HandVisual();
@@ -50,6 +54,7 @@ namespace BlackJack
 	private:
 		CardVisualList            m_cardVisuals;
 		GameUtilities::Point2D    m_position;
+		bool                      m_isSplitHand;
 	};
 
 	/**********/

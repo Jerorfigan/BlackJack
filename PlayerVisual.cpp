@@ -10,10 +10,10 @@ namespace BlackJack
 	using namespace GameUtilities;
 	PlayerVisual::PlayerData    PlayerVisual::m_playerData[ 4 ] =
 									{
-										{ Point2D( 1024, 450 ), Point2D( 1124, 450 ) },
-										{ Point2D( 768, 450 ), Point2D( 868, 450 ) },
-										{ Point2D( 512, 450 ), Point2D( 612, 450 ) },
-										{ Point2D( 256, 450 ), Point2D( 356, 450 ) }
+										{ Point2D( 1084, 450 ), Point2D( 1124, 450 ) },
+										{ Point2D( 788, 450 ), Point2D( 868, 450 ) },
+										{ Point2D( 492, 450 ), Point2D( 612, 450 ) },
+										{ Point2D( 196, 450 ), Point2D( 356, 450 ) }
 									};
 	using namespace BlackJack;
 
@@ -50,7 +50,7 @@ namespace BlackJack
 	PlayerVisual::Split( uint handIndex )
 	{
 		// Create the new hand
-		m_handVisuals.push_back( new HandVisual( m_playerData[ m_playerIndex ].m_secondHandPosition ) );
+		m_handVisuals.push_back( new HandVisual( m_playerData[ m_playerIndex ].m_firstHandPosition + -1 * HandVisual::m_splitOffset, true ) );
 
 		// Add the split card to it
 		m_handVisuals[ m_handVisuals.size() - 1 ]->AddSplitCard( 
@@ -83,6 +83,15 @@ namespace BlackJack
 		{
 			(*handVisualItr)->Draw();
 		}
+	}
+
+	///////////
+	// Reset //
+	///////////
+	void    
+	PlayerVisual::Reset()
+	{
+		m_handVisuals.clear();
 	}
 
 	////////////////

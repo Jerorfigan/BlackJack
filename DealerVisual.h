@@ -33,6 +33,8 @@ namespace BlackJack
 		void    Update();
 		void    Draw();
 
+		void    Reset();
+
 		~DealerVisual();
 
 		/********/

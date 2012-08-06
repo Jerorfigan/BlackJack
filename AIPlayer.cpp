@@ -24,12 +24,39 @@ namespace BlackJack
 		return true;
 	}
 
+	//////////////////////
+	// SelectHandStatus //
+	//////////////////////
 	bool    
 	AIPlayer::SelectHandStatus( uint handIndex )
 	{
-		// AI likes to always live dangerous.
-		m_handStatuses[ handIndex ] = Hit;
+		uint value;
+		m_hands[ handIndex ].GetValue( value );
 
+		// AI plays like dealer while taking advantage of splitting.
+		if( m_hands[ handIndex ].CanSplit() )
+		{
+			m_handStatuses[ handIndex ] = Split;
+		}
+		else if( value < 17 )
+		{
+			m_handStatuses[ handIndex ] = Hit;
+		}
+		else
+		{
+			m_handStatuses[ handIndex ] = Stand;
+		}
+
+		return true;
+	}
+
+	///////////////
+	// PlayAgain //
+	///////////////
+	bool    
+	AIPlayer::PlayAgain( bool &again )
+	{
+		again = true;
 		return true;
 	}
 
