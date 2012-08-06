@@ -61,10 +61,12 @@ namespace BlackJack
 			break;
 		case DealerDeltCardX:
 			{
+				m_dealerVisual.AddCard( data.DealerCard );
 			}
 			break;
 		case DealerRevealHole:
 			{
+				m_dealerVisual.RevealHoleCard();
 			}
 			break;
 		case PlayerXWonHandYWinningZ:
@@ -119,6 +121,9 @@ namespace BlackJack
 	////////////
 	void GameVisualizer::Update()
 	{
+		// Update the dealer visual
+		m_dealerVisual.Update();
+
 		// Update the player visuals
 		for( PlayerVisualList::iterator playerVisualItr = m_playerVisuals.begin();
 			 playerVisualItr != m_playerVisuals.end(); ++playerVisualItr )
@@ -139,6 +144,9 @@ namespace BlackJack
 
 		// Draw game board
 		m_gameBoardVisual.Draw();
+
+		// Draw the dealer visual
+		m_dealerVisual.Draw();
 
 		// Draw the player visuals
 		for( PlayerVisualList::iterator playerVisualItr = m_playerVisuals.begin();

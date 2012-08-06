@@ -35,6 +35,7 @@ namespace BlackJack
 		bool HasBlackJack() const;
 		bool CanSplit() const;
 		bool CanSurrender() const;
+		uint GetNumCards() const;
 
 		/*************/
 		/* Operators */
@@ -69,6 +70,15 @@ namespace BlackJack
 					return true;
 
 		return false;
+	}
+
+	/////////////////
+	// GetNumCards //
+	/////////////////
+	inline uint 
+	Hand::GetNumCards() const
+	{
+		return m_cards.size();
 	}
 
 }

@@ -9,6 +9,7 @@
 #include "Visualization.h"
 #include "PlayerVisual.h"
 #include "GameBoardVisual.h"
+#include "DealerVisual.h"
 
 namespace BlackJack
 {
@@ -130,6 +131,7 @@ namespace BlackJack
 		VisualizationList    m_activeVisualizations;
 		PlayerVisualList	 m_playerVisuals;
 		GameBoardVisual      m_gameBoardVisual;
+		DealerVisual		 m_dealerVisual;
 
 		/***********************/
 		/* Friend Declarations */

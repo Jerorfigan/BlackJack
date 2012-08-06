@@ -86,6 +86,7 @@
     <ClInclude Include="Card.h" />
     <ClInclude Include="Dealer.h" />
     <ClInclude Include="DealerConfiguration.h" />
+    <ClInclude Include="DealerVisual.h" />
     <ClInclude Include="Deck.h" />
     <ClInclude Include="DynamicImage.h" />
     <ClInclude Include="GameBoardVisual.h" />
@@ -116,6 +117,7 @@
     <ClCompile Include="CardVisual.cpp" />
     <ClCompile Include="Dealer.cpp" />
     <ClCompile Include="DealerAI.cpp" />
+    <ClCompile Include="DealerVisual.cpp" />
     <ClCompile Include="DynamicImage.cpp" />
     <ClCompile Include="GameBoardVisual.cpp" />
     <ClCompile Include="GameManager.cpp" />

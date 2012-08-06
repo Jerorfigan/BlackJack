@@ -133,6 +133,9 @@
     <ClInclude Include="GameBoardVisual.h">
       <Filter>GameClasses\Visualization</Filter>
     </ClInclude>
+    <ClInclude Include="DealerVisual.h">
+      <Filter>GameClasses\Visualization</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -199,6 +202,9 @@
       <Filter>GameClasses\Visualization</Filter>
     </ClCompile>
     <ClCompile Include="GameBoardVisual.cpp">
+      <Filter>GameClasses\Visualization</Filter>
+    </ClCompile>
+    <ClCompile Include="DealerVisual.cpp">
       <Filter>GameClasses\Visualization</Filter>
     </ClCompile>
   </ItemGroup>

@@ -621,6 +621,8 @@ namespace BlackJack
 				GameVisualizer::VisualizationData visData;
 
 				GameVisuals()->Visualize( GameVisualizer::DealerRevealHole, visData );
+
+				m_taskState.StepNumber = 6;
 			}
 			// WAIT FOR DEALER HOLE REVEAL VISUALIZATION COMPLETION 
 		case 6:

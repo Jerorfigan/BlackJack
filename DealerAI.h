@@ -46,7 +46,7 @@ namespace BlackJack
 	inline uint 
 	DealerAI::GetNumCards() const
 	{
-		return 0;
+		return m_hand.GetNumCards();
 	}
 
 }

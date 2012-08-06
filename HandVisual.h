@@ -40,6 +40,8 @@ namespace BlackJack
 		void           Update();
 		void           Draw();
 
+		uint           GetCardCount();
+
 		~HandVisual();
 
 		/********/
@@ -49,5 +51,18 @@ namespace BlackJack
 		CardVisualList            m_cardVisuals;
 		GameUtilities::Point2D    m_position;
 	};
+
+	/**********/
+	/* Inline */
+	/**********/
+
+	//////////////////
+	// GetCardCount //
+	//////////////////
+	inline uint           
+	HandVisual::GetCardCount()
+	{
+		return m_cardVisuals.size();
+	}
 
 }

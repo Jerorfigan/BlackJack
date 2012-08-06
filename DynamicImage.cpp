@@ -102,6 +102,8 @@ namespace BlackJack
 		spriteInfo.center = GameUtilities::Point2D( 
 			( spriteInfo.subrect.right - spriteInfo.subrect.left ) / 2.0f,
 			( spriteInfo.subrect.bottom - spriteInfo.subrect.top ) / 2.0f );
+			
+		//m_transforms[ m_transformIndex ].m_center;
 
 		spriteInfo.position = m_transforms[ m_transformIndex ].m_startPosition + 
 			( m_transforms[ m_transformIndex ].m_endPosition - m_transforms[ m_transformIndex ].m_startPosition ) * interpolation;
@@ -109,8 +111,11 @@ namespace BlackJack
 		spriteInfo.rotation = m_transforms[ m_transformIndex ].m_startRotation + 
 			( m_transforms[ m_transformIndex ].m_endRotation - m_transforms[ m_transformIndex ].m_startRotation ) * interpolation;
 
-		spriteInfo.scale = m_transforms[ m_transformIndex ].m_startScale + 
-			( m_transforms[ m_transformIndex ].m_endScale - m_transforms[ m_transformIndex ].m_startScale ) * interpolation;
+		spriteInfo.scaleX = m_transforms[ m_transformIndex ].m_startScaleX + 
+			( m_transforms[ m_transformIndex ].m_endScaleX - m_transforms[ m_transformIndex ].m_startScaleX ) * interpolation;
+
+		spriteInfo.scaleY = m_transforms[ m_transformIndex ].m_startScaleY + 
+			( m_transforms[ m_transformIndex ].m_endScaleY - m_transforms[ m_transformIndex ].m_startScaleY ) * interpolation;
 
 		spriteInfo.alpha = m_transforms[ m_transformIndex ].m_startAlpha + 
 			( m_transforms[ m_transformIndex ].m_endAlpha - m_transforms[ m_transformIndex ].m_startAlpha ) * interpolation;

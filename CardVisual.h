@@ -30,11 +30,15 @@ namespace BlackJack
 		/***********/
 	public:
 		void    ChangePosition( GameUtilities::Point2D newPosition );
+		void    Flip();
 
 		void    Update();
 		void    Draw();
 
 		~CardVisual();
+
+	private:
+		void GetFlipTransforms( Transform &transform1, Transform &transform2 );
 
 		/********/
 		/* Data */
