@@ -21,7 +21,7 @@ namespace BlackJack
 		/* Constructors */
 		/****************/
 	public:
-		Player();
+		Player( uint playerNum );
 
 		/***********/
 		/* Methods */
@@ -62,6 +62,7 @@ namespace BlackJack
 		std::vector< uint >			 m_currentBets;
 		uint						 m_chips;
 		std::vector< HandStatus >    m_handStatuses;  
+		uint                         m_playerNum;
 	};
 
 	/***********/

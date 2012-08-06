@@ -44,7 +44,7 @@ namespace BlackJack
 	void 
 	BlackJackApp::InitGraphics()
 	{
-		ServProvider()->RegisterGraphicsProvider( new GameUtilities::D3DGraphicsProvider( GetWnd()->GetHandle(), 1280, 900 ) );
+		ServProvider()->RegisterGraphicsProvider( new GameUtilities::D3DGraphicsProvider( GetWnd()->GetHandle(), 1280, 800 ) );
 	}
 
 	///////////////

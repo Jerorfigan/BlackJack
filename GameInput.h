@@ -14,7 +14,7 @@ namespace BlackJack
 		/* Enums */
 		/*********/
 	public:
-		enum InputMethod { TextDisplay };
+		enum InputMethod { TextPrompt };
 
 		/********************/
 		/* Internal classes */
@@ -42,7 +42,13 @@ namespace BlackJack
 		/* Methods */
 		/***********/
 	public:
-		bool				 GetInput( InputMethod method, InputData &data );
+		bool				 GetInput( uint playerNum, InputMethod method, InputData &data );
+
+		/********/
+		/* Data */
+		/********/
+	private:
+		bool    m_waiting4Input;
 
 		/******************/
 		/* Static Methods */

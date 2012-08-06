@@ -5,6 +5,7 @@
 #include "GameInput.h"
 #include "GameVisualizer.h"
 #include "AIPlayer.h"
+#include "UserPlayer.h"
 
 namespace BlackJack
 {
@@ -40,10 +41,10 @@ namespace BlackJack
 		m_gameConfig.AllowSurrender = false;
 
 		// Add some AI players.
-		m_players.push_back( new AIPlayer() );
-		m_players.push_back( new AIPlayer() );
-		m_players.push_back( new AIPlayer() );
-		m_players.push_back( new AIPlayer() );
+		m_players.push_back( new UserPlayer( 1 ) );
+		m_players.push_back( new AIPlayer( 2 ) );
+		m_players.push_back( new AIPlayer( 3 ) );
+		m_players.push_back( new AIPlayer( 4 ) );
 
 		/* Create game visualizer and input singletons */
 		GameInput::Create();

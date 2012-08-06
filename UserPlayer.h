@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Globals.h"
 #include "Player.h"
 
 namespace BlackJack
@@ -7,6 +8,12 @@ namespace BlackJack
 
 	class UserPlayer : public Player
 	{
+		/****************/
+		/* Constructors */
+		/****************/
+	public:
+		UserPlayer( uint playerNum ) : Player( playerNum ) {}
+
 		/*******************/
 		/* Virtual methods */
 		/*******************/

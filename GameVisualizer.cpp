@@ -85,6 +85,26 @@ namespace BlackJack
 			{
 			}
 			break;
+		case ShowPrompt:
+			{
+				// Unpack the selection/hotkey data which was sent as char** and char* respectively, due to 
+				// union intolerance of STL types.
+				std::vector< std::string > selections;
+				for( uint index = 0; index < data.NumSelections; ++index )
+					selections.push_back( data.Selections[ index ] );
+				std::vector< char > hotkeys;
+				for( uint index = 0; index < data.NumHotKeys; ++index )
+					hotkeys.push_back( data.HotKeys[ index ] );
+
+				m_playerPrompt.SetPrompt( data.PlayerNum, data.Prompt, selections, hotkeys );
+				m_playerPrompt.DisplayPrompt();
+			}
+			break;
+		case HidePrompt:
+			{
+				m_playerPrompt.HidePrompt();
+			}
+			break;
 		}
 	}
 
@@ -139,6 +159,7 @@ namespace BlackJack
 	GameVisualizer::Draw()
 	{
 		ServProvider()->GetGraphicsProvider()->ClearBackbuffer();
+
 		ServProvider()->GetGraphicsProvider()->BeginScene();
 		ServProvider()->GetGraphicsProvider()->StartSpriteBatch();
 
@@ -155,8 +176,18 @@ namespace BlackJack
 			(*playerVisualItr)->Draw();
 		}
 
+		// Draw player prompt background
+		m_playerPrompt.DrawPromptBackground();
+
+		ServProvider()->GetGraphicsProvider()->EndSpriteBatch();
+		ServProvider()->GetGraphicsProvider()->StartSpriteBatch();
+	
+		// Draw player prompt text
+		m_playerPrompt.DrawPromptText();
+
 		ServProvider()->GetGraphicsProvider()->EndSpriteBatch();
 		ServProvider()->GetGraphicsProvider()->EndScene();
+
 		ServProvider()->GetGraphicsProvider()->Flip();
 	}
 

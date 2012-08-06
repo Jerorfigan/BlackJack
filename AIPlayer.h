@@ -11,6 +11,12 @@ namespace BlackJack
 
 	class AIPlayer : public Player
 	{
+		/****************/
+		/* Constructors */
+		/****************/
+	public:
+		AIPlayer( uint playerNum ) : Player( playerNum ) {}
+
 		/*******************/
 		/* Virtual methods */
 		/*******************/

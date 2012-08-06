@@ -10,6 +10,7 @@
 #include "PlayerVisual.h"
 #include "GameBoardVisual.h"
 #include "DealerVisual.h"
+#include "PlayerPrompt.h"
 
 namespace BlackJack
 {
@@ -21,7 +22,8 @@ namespace BlackJack
 		/*********/
 	public:
 		enum VisualizationType { GameBoard, PlayerXHandYMadeBetZ, PlayerXHandYDealtCardZ, PlayerXHandYSplit, PlayerXSurrender, DealerDeltCardX, 
-								 DealerRevealHole, PlayerXWonHandYWinningZ, PlayerXPushedHandY, PlayerXLostHandY, PlayerXAdjustChipsToY };
+								 DealerRevealHole, PlayerXWonHandYWinningZ, PlayerXPushedHandY, PlayerXLostHandY, PlayerXAdjustChipsToY,
+		                         ShowPrompt, HidePrompt };
 
 		/************/
 		/* Typedefs */
@@ -91,6 +93,16 @@ namespace BlackJack
 				uint PlayerNum;
 				uint Chips;
 			};
+			// ShowPrompt
+			struct
+			{
+				uint PlayerNum;
+				const char *Prompt;
+				const char **Selections;
+				uint NumSelections;
+				char *HotKeys;
+				uint NumHotKeys;
+			};
 		};
 
 		/******************/
@@ -132,6 +144,7 @@ namespace BlackJack
 		PlayerVisualList	 m_playerVisuals;
 		GameBoardVisual      m_gameBoardVisual;
 		DealerVisual		 m_dealerVisual;
+		PlayerPrompt         m_playerPrompt;
 
 		/***********************/
 		/* Friend Declarations */

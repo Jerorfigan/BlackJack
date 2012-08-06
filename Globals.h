@@ -6,6 +6,9 @@
 /*****************/
 /*****************/
 
+#include <string>
+#include <sstream>
+
 namespace BlackJack
 {
 
@@ -18,4 +21,12 @@ namespace BlackJack
 	/* Global functions */
 	/********************/
 	int RandomBetween( int low, int high, bool inclusive = true );
+	
+	template < typename numericType >
+	std::string NumToStr( numericType num )
+	{
+		std::stringstream s;
+		s << num;
+		return s.str();
+	}
 }

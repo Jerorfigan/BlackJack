@@ -94,6 +94,7 @@
     <ClInclude Include="HandVisual.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerConfiguration.h" />
+    <ClInclude Include="PlayerPrompt.h" />
     <ClInclude Include="PlayerVisual.h" />
     <ClInclude Include="TaskManager.h" />
     <ClInclude Include="GameError.h" />
@@ -127,6 +128,7 @@
     <ClCompile Include="HandVisual.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="GameInput.cpp" />
+    <ClCompile Include="PlayerPrompt.cpp" />
     <ClCompile Include="PlayerVisual.cpp" />
     <ClCompile Include="ServiceProvider.cpp" />
     <ClCompile Include="stdafx.cpp">

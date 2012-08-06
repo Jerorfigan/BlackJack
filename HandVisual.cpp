@@ -8,7 +8,7 @@ namespace BlackJack
 	/***************/
 	/* Static Data */
 	/***************/
-	GameUtilities::Point2D    HandVisual::m_cardOffset( 20.0f, -20.0f );
+	GameUtilities::Point2D    HandVisual::m_cardOffset( 20.0f, -5.0f );
 
 	/****************/
 	/* Constructors */

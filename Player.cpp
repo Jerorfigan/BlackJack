@@ -7,7 +7,7 @@ namespace BlackJack
 	/****************/
 	/* Constructors */
 	/****************/
-	Player::Player() : m_chips( 0 )
+	Player::Player( uint playerNum ) : m_chips( 0 ), m_playerNum( playerNum )
 	{
 		// Create the default hand
 		m_hands.push_back( Hand() );

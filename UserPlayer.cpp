@@ -42,7 +42,7 @@ namespace BlackJack
 		if( m_chips >= 1000 )
 			inpData.hotKeys.push_back( '6' );
 
-		bool inputReceived = GameInp()->GetInput( GameInput::TextDisplay, inpData );
+		bool inputReceived = GameInp()->GetInput( m_playerNum, GameInput::TextPrompt, inpData );
 
 		if( inputReceived )
 		{
@@ -86,7 +86,7 @@ namespace BlackJack
 		if( m_hands[ handIndex ].CanSurrender() ) 
 			inpData.hotKeys.push_back( 'f' );
 
-		bool inputReceived = GameInp()->GetInput( GameInput::TextDisplay, inpData );
+		bool inputReceived = GameInp()->GetInput( m_playerNum, GameInput::TextPrompt, inpData );
 
 		if( inputReceived )
 		{

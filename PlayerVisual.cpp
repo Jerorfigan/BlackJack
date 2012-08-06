@@ -10,10 +10,10 @@ namespace BlackJack
 	using namespace GameUtilities;
 	PlayerVisual::PlayerData    PlayerVisual::m_playerData[ 4 ] =
 									{
-										{ Point2D( 1024, 600 ), Point2D( 1124, 600 ) },
-										{ Point2D( 768, 600 ), Point2D( 868, 600 ) },
-										{ Point2D( 512, 600 ), Point2D( 612, 600 ) },
-										{ Point2D( 256, 600 ), Point2D( 356, 600 ) }
+										{ Point2D( 1024, 450 ), Point2D( 1124, 450 ) },
+										{ Point2D( 768, 450 ), Point2D( 868, 450 ) },
+										{ Point2D( 512, 450 ), Point2D( 612, 450 ) },
+										{ Point2D( 256, 450 ), Point2D( 356, 450 ) }
 									};
 	using namespace BlackJack;
 
