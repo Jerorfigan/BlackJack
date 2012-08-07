@@ -139,6 +139,12 @@
     <ClInclude Include="PlayerPrompt.h">
       <Filter>GameClasses\Visualization</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerHUD.h">
+      <Filter>GameClasses\Visualization</Filter>
+    </ClInclude>
+    <ClInclude Include="GameVisualizerInputStructs.h">
+      <Filter>GameClasses\Visualization</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -211,6 +217,9 @@
       <Filter>GameClasses\Visualization</Filter>
     </ClCompile>
     <ClCompile Include="PlayerPrompt.cpp">
+      <Filter>GameClasses\Visualization</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHUD.cpp">
       <Filter>GameClasses\Visualization</Filter>
     </ClCompile>
   </ItemGroup>

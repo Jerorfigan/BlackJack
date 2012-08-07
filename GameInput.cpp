@@ -4,6 +4,7 @@
 #include "GameError.h"
 #include "GameVisualizer.h"
 #include "ServiceProvider.h"
+#include "GameVisualizerInputStructs.h"
 
 namespace BlackJack
 {
@@ -37,32 +38,13 @@ namespace BlackJack
 				{
 					m_waiting4Input = true;
 
-					GameVisualizer::VisualizationData visData;
-					visData.PlayerNum = playerNum;
-					visData.Prompt = data.prompt.c_str();
-					
-					// Have to pack selection/hotkey data in char arrays since a union can't hold STL types apparently.
-					const char **selections = new const char*[ data.choices.size() ]; 
-					uint index = 0;
-					for( std::vector< std::string >::iterator choiceItr = data.choices.begin();
-						 choiceItr != data.choices.end(); ++choiceItr )
-					{
-						selections[ index++ ] = choiceItr->c_str();
-					}
-					visData.Selections = selections;
-					visData.NumSelections = data.choices.size();
+					sShowPlayerXPrompt promptData;
+					promptData.playerIndex = playerNum - 1;
+					promptData.prompt = data.prompt;
+					promptData.selections = data.choices;
+					promptData.hotkeys = data.hotKeys;
 
-					char *hotkeys = new char[ data.hotKeys.size() ];
-					index = 0;
-					for( std::vector< char >::iterator hotKeyItr = data.hotKeys.begin();
-						 hotKeyItr != data.hotKeys.end(); ++hotKeyItr )
-					{
-						hotkeys[ index++ ] = *hotKeyItr;
-					}
-					visData.HotKeys = hotkeys;
-					visData.NumHotKeys = data.hotKeys.size();
-
-					GameVisuals()->Visualize( GameVisualizer::ShowPrompt, visData );
+					GameVisuals()->Visualize( GameVisualizer::ShowPlayerXPrompt, (void*)&promptData );
 				}
 
 				uint choiceIndex = 0;
@@ -73,8 +55,8 @@ namespace BlackJack
 					{
 						data.selectedChoice = data.choices[ choiceIndex ];
 						m_waiting4Input = false;
-						GameVisualizer::VisualizationData visData;
-						GameVisuals()->Visualize( GameVisualizer::HidePrompt, visData );
+
+						GameVisuals()->Visualize( GameVisualizer::HidePrompt );
 						return true;
 					}
 					++choiceIndex;

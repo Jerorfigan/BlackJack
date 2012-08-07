@@ -4,6 +4,7 @@
 #include "GameError.h"
 #include "ServiceProvider.h"
 #include "GameManager.h"
+#include "GameVisualizerInputStructs.h"
 
 namespace BlackJack
 {
@@ -32,7 +33,7 @@ namespace BlackJack
 	// Visualize //
 	///////////////
 	void
-	GameVisualizer::Visualize( VisualizationType visType, const VisualizationData &data )
+	GameVisualizer::Visualize( VisualizationType visType, void *pVisData )
 	{
 		switch( visType )
 		{
@@ -47,12 +48,16 @@ namespace BlackJack
 			break;
 		case PlayerXHandYDealtCardZ:
 			{
-				m_playerVisuals[ data.PlayerNum - 1 ]->AddCard( data.PlayerCard, data.HandIndex );
+				sPlayerXHandYDealtCardZ *pData = (sPlayerXHandYDealtCardZ*)pVisData;
+
+				m_playerVisuals[ pData->playerIndex ]->AddCard( pData->card, pData->handIndex );
 			}
 			break;
 		case PlayerXHandYSplit:
 			{
-				m_playerVisuals[ data.PlayerNum - 1 ]->Split( data.HandIndex );
+				sPlayerXHandYSplit *pData = (sPlayerXHandYSplit*)pVisData;
+
+				m_playerVisuals[ pData->playerIndex ]->Split( pData->handIndex );
 			}
 			break;
 		case PlayerXSurrender:
@@ -61,7 +66,9 @@ namespace BlackJack
 			break;
 		case DealerDeltCardX:
 			{
-				m_dealerVisual.AddCard( data.DealerCard );
+				sDealerDeltCardX *pData = (sDealerDeltCardX*)pVisData;
+
+				m_dealerVisual.AddCard( pData->card );
 			}
 			break;
 		case DealerRevealHole:
@@ -69,7 +76,7 @@ namespace BlackJack
 				m_dealerVisual.RevealHoleCard();
 			}
 			break;
-		case PlayerXWonHandYWinningZ:
+		case PlayerXWonHandY:
 			{
 			}
 			break;
@@ -81,28 +88,31 @@ namespace BlackJack
 			{
 			}
 			break;
-		case PlayerXAdjustChipsToY:
+		case PlayerXSetChipsToY:
 			{
+				sPlayerXSetChipsToY *pData = (sPlayerXSetChipsToY*)pVisData;
+
+				m_playerVisuals[ pData->playerIndex ]->UpdatePlayerChips( pData->chips );
 			}
 			break;
-		case ShowPrompt:
+		case ShowPlayerXPrompt:
 			{
-				// Unpack the selection/hotkey data which was sent as char** and char* respectively, due to 
-				// union intolerance of STL types.
-				std::vector< std::string > selections;
-				for( uint index = 0; index < data.NumSelections; ++index )
-					selections.push_back( data.Selections[ index ] );
-				std::vector< char > hotkeys;
-				for( uint index = 0; index < data.NumHotKeys; ++index )
-					hotkeys.push_back( data.HotKeys[ index ] );
+				sShowPlayerXPrompt *pData = (sShowPlayerXPrompt*)pVisData;
 
-				m_playerPrompt.SetPrompt( data.PlayerNum, data.Prompt, selections, hotkeys );
+				m_playerPrompt.SetPrompt( pData->playerIndex + 1, pData->prompt, pData->selections, pData->hotkeys );
 				m_playerPrompt.DisplayPrompt();
 			}
 			break;
 		case HidePrompt:
 			{
 				m_playerPrompt.HidePrompt();
+			}
+			break;
+		case PlayerXNameChanged:
+			{
+				sPlayerXNameChanged *pData = (sPlayerXNameChanged*)pVisData;
+
+				m_playerVisuals[ pData->playerIndex ]->UpdatePlayerName( pData->name );
 			}
 			break;
 		}
@@ -184,6 +194,13 @@ namespace BlackJack
 	
 		// Draw player prompt text
 		m_playerPrompt.DrawPromptText();
+
+		// Draw the player info
+		for( PlayerVisualList::iterator playerVisualItr = m_playerVisuals.begin();
+			 playerVisualItr != m_playerVisuals.end(); ++playerVisualItr )
+		{
+			(*playerVisualItr)->DrawHUD();
+		}
 
 		ServProvider()->GetGraphicsProvider()->EndSpriteBatch();
 		ServProvider()->GetGraphicsProvider()->EndScene();

@@ -22,8 +22,8 @@ namespace BlackJack
 		/*********/
 	public:
 		enum VisualizationType { GameBoard, PlayerXHandYMadeBetZ, PlayerXHandYDealtCardZ, PlayerXHandYSplit, PlayerXSurrender, DealerDeltCardX, 
-								 DealerRevealHole, PlayerXWonHandYWinningZ, PlayerXPushedHandY, PlayerXLostHandY, PlayerXAdjustChipsToY,
-		                         ShowPrompt, HidePrompt };
+								 DealerRevealHole, PlayerXWonHandY, PlayerXPushedHandY, PlayerXLostHandY, PlayerXSetChipsToY,
+		                         ShowPlayerXPrompt, HidePrompt, PlayerXNameChanged };
 
 		/************/
 		/* Typedefs */
@@ -31,79 +31,6 @@ namespace BlackJack
 	private: 
 		typedef std::vector< Visualization* > VisualizationList;
 		typedef std::vector< PlayerVisual* > PlayerVisualList;
-
-		/********************/
-		/* Internal classes */
-		/********************/
-	public:
-		union VisualizationData
-		{
-			// PlayerXHandYMadeBetZ
-			struct 
-			{
-				uint PlayerNum;
-				uint HandIndex;
-				uint BetAmount;
-			};
-			// PlayerXHandYDealtCardZ
-			struct
-			{
-				uint PlayerNum;
-				uint HandIndex;
-				Card PlayerCard;
-			};
-			// PlayerXHandYSplit
-			struct 
-			{
-				uint PlayerNum;
-				uint HandIndex;
-			};
-			// PlayerXSurrender
-			struct
-			{
-				uint PlayerNum;
-			};
-			// DealerDeltCardX
-			struct
-			{
-				Card DealerCard;
-			};
-			// PlayerXWonHandYWinningZ
-			struct
-			{
-				uint PlayerNum;
-				uint HandIndex;
-				uint Winnings;
-			};
-			// PlayerXPushedHandY
-			struct
-			{
-				uint PlayerNum;
-				uint HandIndex;
-			};
-			// PlayerXLostHandY
-			struct
-			{
-				uint PlayerNum;
-				uint HandIndex;
-			};
-			// PlayerXAdjustChipsToY
-			struct
-			{
-				uint PlayerNum;
-				uint Chips;
-			};
-			// ShowPrompt
-			struct
-			{
-				uint PlayerNum;
-				const char *Prompt;
-				const char **Selections;
-				uint NumSelections;
-				char *HotKeys;
-				uint NumHotKeys;
-			};
-		};
 
 		/******************/
 		/* Static Methods */
@@ -129,7 +56,7 @@ namespace BlackJack
 		/* Methods */
 		/***********/
 	public:
-		void    Visualize( VisualizationType visType, const VisualizationData &data );
+		void    Visualize( VisualizationType visType, void *pVisData = NULL );
 		bool	VisualizationsComplete();
 		void    Update();
 		void    Draw();

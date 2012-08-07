@@ -19,15 +19,15 @@ namespace BlackJack
 	private:
 		struct TaskState
 		{
-			Task    CurrentTask;
-			uint    StepNumber;
-			void    *TaskData;
+			Task currentTask;
+			uint stepNumber;
+			void *pTaskData;
 		};
 
 		struct TaskData
 		{
-			uint			     PlayerNumber;
-			uint                 HandIndex;
+			uint playerIndex;
+			uint handIndex;
 		};
 
 		/****************/

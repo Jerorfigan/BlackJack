@@ -1,6 +1,8 @@
 #include "stdafx.h"
 
+#include "Globals.h"
 #include "PlayerVisual.h"
+#include "ServiceProvider.h"
 
 namespace BlackJack
 {
@@ -10,17 +12,18 @@ namespace BlackJack
 	using namespace GameUtilities;
 	PlayerVisual::PlayerData    PlayerVisual::m_playerData[ 4 ] =
 									{
-										{ Point2D( 1084, 450 ), Point2D( 1124, 450 ) },
-										{ Point2D( 788, 450 ), Point2D( 868, 450 ) },
-										{ Point2D( 492, 450 ), Point2D( 612, 450 ) },
-										{ Point2D( 196, 450 ), Point2D( 356, 450 ) }
+										{ Point2D( 1084, 450 ) },
+										{ Point2D( 788, 450 ) },
+										{ Point2D( 492, 450 ) },
+										{ Point2D( 196, 450 ) }
 									};
 	using namespace BlackJack;
 
 	/****************/
 	/* Constructors */
 	/****************/
-	PlayerVisual::PlayerVisual( uint playerIndex ) : m_playerIndex( playerIndex )
+	PlayerVisual::PlayerVisual( uint playerIndex ) : m_playerIndex( playerIndex ), 
+		m_playerHUD( m_playerData[ playerIndex ].m_firstHandPosition )
 	{
 	}
 
@@ -83,6 +86,15 @@ namespace BlackJack
 		{
 			(*handVisualItr)->Draw();
 		}
+	}
+
+	//////////////////
+	// DrawTextInfo //
+	//////////////////
+	void 
+	PlayerVisual::DrawHUD()
+	{
+		m_playerHUD.Draw();
 	}
 
 	///////////

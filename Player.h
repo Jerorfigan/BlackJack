@@ -41,6 +41,7 @@ namespace BlackJack
 		uint		  GetHandValue( uint handIndex ) const;
 		bool		  CanPlay( uint handIndex ) const;
 		bool		  HasBlackJack( uint handIndex ) const;
+		uint          GetChips() const;
 
 		/*******************/
 		/* Virtual Methods */
@@ -130,4 +131,9 @@ namespace BlackJack
 		return m_hands[ handIndex ].HasBlackJack();
 	}
 
+	inline uint          
+	Player::GetChips() const
+	{
+		return m_chips;
+	}
 }

@@ -6,6 +6,7 @@
 #include "GameVisualizer.h"
 #include "AIPlayer.h"
 #include "UserPlayer.h"
+#include "GameVisualizerInputStructs.h"
 
 namespace BlackJack
 {
@@ -51,8 +52,24 @@ namespace BlackJack
 		GameVisualizer::Create();
 
 		// Visualize game board
-		GameVisualizer::VisualizationData visData;
-		GameVisuals()->Visualize( GameVisualizer::GameBoard, visData );
+		GameVisuals()->Visualize( GameVisualizer::GameBoard );
+
+		// Initialize visualizations for player names & starting chips
+		sPlayerXNameChanged nameData;
+		sPlayerXSetChipsToY chipsData;
+
+		for( uint index = 0; index < m_players.size(); ++index )
+		{
+			nameData.playerIndex = index;
+			nameData.name = std::string("Player ") + NumToStr( index + 1 );
+
+			chipsData.playerIndex = index;
+			chipsData.chips = m_players[ index ]->GetChips();
+
+			GameVisuals()->Visualize( GameVisualizer::PlayerXNameChanged, (void*)&nameData );
+			GameVisuals()->Visualize( GameVisualizer::PlayerXSetChipsToY, (void*)&chipsData );
+		}
+
 	}
 
 	/***********/

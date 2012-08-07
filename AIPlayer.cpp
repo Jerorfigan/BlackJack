@@ -56,7 +56,7 @@ namespace BlackJack
 	bool    
 	AIPlayer::PlayAgain( bool &again )
 	{
-		again = true;
+		// AI doesnt influence player again outcome
 		return true;
 	}
 

@@ -5,7 +5,7 @@
 #include "Globals.h"
 #include "Card.h"
 #include "HandVisual.h"
-#include "..\GameUtilities\Point2D.h"
+#include "PlayerHUD.h"
 
 namespace BlackJack
 {
@@ -19,7 +19,6 @@ namespace BlackJack
 		struct PlayerData
 		{
 			GameUtilities::Point2D    m_firstHandPosition;
-			GameUtilities::Point2D    m_secondHandPosition;
 		};
 
 		/************/
@@ -48,7 +47,10 @@ namespace BlackJack
 		void    Split( uint handIndex );
 
 		void    Update();
+		void    UpdatePlayerName( std::string name );
+		void    UpdatePlayerChips( uint chips );
 		void    Draw();
+		void    DrawHUD();
 
 		void    Reset();
 
@@ -60,6 +62,29 @@ namespace BlackJack
 	private:
 		 HandVisualList    m_handVisuals;
 		 uint			   m_playerIndex;
+		 PlayerHUD         m_playerHUD;
 	};
+
+	/***********/
+	/* Inlines */
+	/***********/
+	
+	//////////////////////
+	// UpdatePlayerName //
+	//////////////////////
+	inline void    
+	PlayerVisual::UpdatePlayerName( std::string name )
+	{
+		m_playerHUD.SetName( name );
+	}
+
+	///////////////////////
+	// UpdatePlayerChips //
+	///////////////////////
+	inline void    
+	PlayerVisual::UpdatePlayerChips( uint chips )
+	{
+		m_playerHUD.SetChips( chips );
+	}
 
 }

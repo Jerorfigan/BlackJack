@@ -7,7 +7,7 @@ namespace BlackJack
 	/****************/
 	/* Constructors */
 	/****************/
-	Player::Player( uint playerNum ) : m_chips( 0 ), m_playerNum( playerNum )
+	Player::Player( uint playerNum ) : m_chips( 1000 ), m_playerNum( playerNum )
 	{
 		// Create the default hand
 		m_hands.push_back( Hand( m_hands.size() + 1 ) );
@@ -89,21 +89,12 @@ namespace BlackJack
 	Player::Reset()
 	{
 		// Clear hands & bets & handstatuses
-		for( std::vector< Hand >::iterator handItr = m_hands.begin();
-			 handItr != m_hands.end(); ++handItr )
-		{
-			handItr->Reset();
-		}
-		for( std::vector< uint >::iterator betItr = m_currentBets.begin();
-			 betItr != m_currentBets.end(); ++betItr )
-		{
-			*betItr = 0;
-		}
-		for( std::vector< HandStatus >::iterator handStatusItr = m_handStatuses.begin();
-			 handStatusItr != m_handStatuses.end(); ++handStatusItr )
-		{
-			*handStatusItr = Hit;
-		}
+		m_hands.clear();
+		m_hands.push_back( Hand( m_hands.size() + 1 ) );
+		m_currentBets.clear();
+		m_currentBets.push_back( 0 );
+		m_handStatuses.clear();
+		m_handStatuses.push_back( Hit );
 	}
 
 }
