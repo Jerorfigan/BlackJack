@@ -7,8 +7,8 @@ namespace BlackJack
 	/***************/
 	/* Static Data */
 	/***************/
-	const GameUtilities::Point2D    PlayerHUD::m_chipsDispOffset( 0.0f, 150.0f );
-	const GameUtilities::Point2D    PlayerHUD::m_nameDispOffset( 0.0f, 200.0f );
+	const GameUtilities::Point2D    PlayerHUD::m_chipsDispOffset( 0.0f, 250.0f );
+	const GameUtilities::Point2D    PlayerHUD::m_nameDispOffset( 0.0f, 300.0f );
 
 	/****************/
 	/* Constructors */

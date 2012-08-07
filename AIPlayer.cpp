@@ -34,7 +34,7 @@ namespace BlackJack
 		m_hands[ handIndex ].GetValue( value );
 
 		// AI plays like dealer while taking advantage of splitting.
-		if( m_hands[ handIndex ].CanSplit() )
+		if( CanSplit() )
 		{
 			m_handStatuses[ handIndex ] = Split;
 		}

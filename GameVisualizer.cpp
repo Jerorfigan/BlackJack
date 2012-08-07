@@ -44,6 +44,9 @@ namespace BlackJack
 			break;
 		case PlayerXHandYMadeBetZ:
 			{
+				sPlayerXHandYMadeBetZ *pData = (sPlayerXHandYMadeBetZ*)pVisData;
+
+				m_playerVisuals[ pData->playerIndex ]->AddBet( pData->betAmount, pData->handIndex );
 			}
 			break;
 		case PlayerXHandYDealtCardZ:
@@ -78,14 +81,23 @@ namespace BlackJack
 			break;
 		case PlayerXWonHandY:
 			{
+				sPlayerXWonHandY *pData = (sPlayerXWonHandY*)pVisData;
+
+				m_playerVisuals[ pData->playerIndex ]->ClearBets();
 			}
 			break;
 		case PlayerXPushedHandY:
 			{
+				sPlayerXPushedHandY *pData = (sPlayerXPushedHandY*)pVisData;
+
+				m_playerVisuals[ pData->playerIndex ]->ClearBets();
 			}
 			break;
 		case PlayerXLostHandY: 
 			{
+				sPlayerXLostHandY *pData = (sPlayerXLostHandY*)pVisData;
+
+				m_playerVisuals[ pData->playerIndex ]->ClearBets();
 			}
 			break;
 		case PlayerXSetChipsToY:

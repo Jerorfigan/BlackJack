@@ -90,6 +90,29 @@ namespace BlackJack
 			{
 				bool newGame = false;
 
+				if( GameMgr()->GetPlayerList()[0]->GetChips() == 0 )
+				{
+					sShowPlayerXPrompt data;
+					data.playerIndex = 0;
+					data.prompt = "You lose, you get nothing, good day Sir!";
+
+					GameVisuals()->Visualize( GameVisualizer::ShowPlayerXPrompt, (void*)&data );
+
+					m_taskState.currentTask = DoNothing;
+					break;
+				}
+				
+				if( GameMgr()->GetPlayerList()[1]->GetChips() == 0 &&
+				    GameMgr()->GetPlayerList()[2]->GetChips() == 0 &&
+					GameMgr()->GetPlayerList()[3]->GetChips() )
+				{
+					sShowPlayerXPrompt data;
+					data.playerIndex = 0;
+					data.prompt = "You're the last man on the table, good job!";
+
+					GameVisuals()->Visualize( GameVisualizer::ShowPlayerXPrompt, (void*)&data );
+				}
+				
 				if( PromptForNewGameTask( newGame) )
 				{
 					if( newGame )
@@ -561,6 +584,14 @@ namespace BlackJack
 				
 				GameVisuals()->Visualize( GameVisualizer::PlayerXHandYDealtCardZ, (void*)&card2Data );
 
+				// Visualize new bet
+				sPlayerXHandYMadeBetZ betData;
+				betData.playerIndex = pTaskData->playerIndex;
+				betData.handIndex = GameMgr()->GetPlayerList()[ pTaskData->playerIndex ]->GetNumHands() - 1;
+				betData.betAmount = GameMgr()->GetPlayerList()[ pTaskData->playerIndex ]->GetCurrentBet( pTaskData->handIndex );
+
+				GameVisuals()->Visualize( GameVisualizer::PlayerXHandYMadeBetZ, (void*)&betData );
+
 				// Visualize decrease in player's chips
 				sPlayerXSetChipsToY chipsData;
 				chipsData.playerIndex = pTaskData->playerIndex;
@@ -756,9 +787,14 @@ namespace BlackJack
 						handStatus = 0;
 					}
 				}
-				else
+				else if( GameMgr()->GetDealerAI().GetHandValue() <= 21 )
 				{
-					if( GameMgr()->GetPlayerList()[ pTaskData->playerIndex ]->HasBlackJack( pTaskData->handIndex ) )
+					if( GameMgr()->GetPlayerList()[ pTaskData->playerIndex ]->GetHandValue( pTaskData->handIndex ) > 21 )
+					{
+						// Busted
+						handStatus = 0;
+					}
+					else if( GameMgr()->GetPlayerList()[ pTaskData->playerIndex ]->HasBlackJack( pTaskData->handIndex ) )
 					{
 						// Won hand with blackjack, recuperate bet and add winnings paid 3:2
 						winnings = GameMgr()->GetPlayerList()[ pTaskData->playerIndex ]->GetCurrentBet( pTaskData->handIndex ) +
@@ -786,6 +822,29 @@ namespace BlackJack
 					else
 					{
 						// Lost hand, don't recuperate bet
+						handStatus = 0;
+					}
+				}
+				else
+				{
+					// Dealer busted, win if under or at 21
+					if( GameMgr()->GetPlayerList()[ pTaskData->playerIndex ]->HasBlackJack( pTaskData->handIndex ) )
+					{
+						// Won hand with blackjack, recuperate bet and add winnings paid 3:2
+						winnings = GameMgr()->GetPlayerList()[ pTaskData->playerIndex ]->GetCurrentBet( pTaskData->handIndex ) +
+							static_cast< uint >( (3.0/2.0) * GameMgr()->GetPlayerList()[ pTaskData->playerIndex ]->GetCurrentBet( pTaskData->handIndex ) );
+						GameMgr()->GetPlayerList()[ pTaskData->playerIndex ]->AddChips( winnings );
+						
+						handStatus = 2;
+					}
+					else if( GameMgr()->GetPlayerList()[ pTaskData->playerIndex ]->GetHandValue( pTaskData->handIndex ) <= 21 )
+					{
+						winnings = 2 * GameMgr()->GetPlayerList()[ pTaskData->playerIndex ]->GetCurrentBet( pTaskData->handIndex );
+						GameMgr()->GetPlayerList()[ pTaskData->playerIndex ]->AddChips( winnings );
+						handStatus = 2;
+					}
+					else
+					{
 						handStatus = 0;
 					}
 				}

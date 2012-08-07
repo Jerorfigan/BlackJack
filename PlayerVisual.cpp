@@ -12,10 +12,10 @@ namespace BlackJack
 	using namespace GameUtilities;
 	PlayerVisual::PlayerData    PlayerVisual::m_playerData[ 4 ] =
 									{
-										{ Point2D( 1084, 450 ) },
-										{ Point2D( 788, 450 ) },
-										{ Point2D( 492, 450 ) },
-										{ Point2D( 196, 450 ) }
+										{ Point2D( 1084, 350 ), Point2D( 1104, 500 ) },
+										{ Point2D( 788, 350 ), Point2D( 808, 500 ) },
+										{ Point2D( 492, 350 ), Point2D( 512, 500 ) },
+										{ Point2D( 196, 350 ), Point2D( 216, 500 ) }
 									};
 	using namespace BlackJack;
 
@@ -46,6 +46,37 @@ namespace BlackJack
 		m_handVisuals[ handIndex ]->AddCard( card );
 	}
 
+	////////////
+	// AddBet //
+	////////////
+	void    
+	PlayerVisual::AddBet( uint amt, uint betIndex )
+	{
+		if( betIndex == 0 )
+		{
+			if( m_betVisuals.size() == 0 )
+			{
+				m_betVisuals.push_back( new PlayerBetVisual( m_playerData[ m_playerIndex ].m_betPosition, amt ) );
+			}
+			else
+			{
+				m_betVisuals[0]->SetAmount( amt );
+			}
+		}
+		else
+		{
+			if( m_betVisuals.size() == 1 )
+			{
+				m_betVisuals[0]->SetPosition( m_playerData[ m_playerIndex ].m_betPosition + Point2D( 60, 0 ) );
+				m_betVisuals.push_back( new PlayerBetVisual( m_playerData[ m_playerIndex ].m_betPosition + Point2D( -60, 0 ), amt ) );
+			}
+			else
+			{
+				m_betVisuals[1]->SetAmount( amt );
+			}
+		}
+	}
+
 	///////////
 	// Split //
 	///////////
@@ -58,6 +89,15 @@ namespace BlackJack
 		// Add the split card to it
 		m_handVisuals[ m_handVisuals.size() - 1 ]->AddSplitCard( 
 			m_handVisuals[ handIndex ]->SplitHand() );
+	}
+
+	///////////////
+	// ClearBets //
+	///////////////
+	void    
+	PlayerVisual::ClearBets()
+	{
+		m_betVisuals.clear();
 	}
 
 	////////////
@@ -86,6 +126,13 @@ namespace BlackJack
 		{
 			(*handVisualItr)->Draw();
 		}
+
+		// Draw the bet sprites
+		for( BetVisualList::iterator betVisItr = m_betVisuals.begin();
+			 betVisItr != m_betVisuals.end(); ++betVisItr )
+		{
+			(*betVisItr)->Draw();
+		}
 	}
 
 	//////////////////
@@ -95,6 +142,13 @@ namespace BlackJack
 	PlayerVisual::DrawHUD()
 	{
 		m_playerHUD.Draw();
+		
+		// Draw the bet text
+		for( BetVisualList::iterator betVisItr = m_betVisuals.begin();
+			 betVisItr != m_betVisuals.end(); ++betVisItr )
+		{
+			(*betVisItr)->DrawText();
+		}
 	}
 
 	///////////
@@ -104,6 +158,7 @@ namespace BlackJack
 	PlayerVisual::Reset()
 	{
 		m_handVisuals.clear();
+		m_betVisuals.clear();
 	}
 
 	////////////////
@@ -116,6 +171,13 @@ namespace BlackJack
 			 handVisualItr != m_handVisuals.end(); ++handVisualItr )
 		{
 			delete *handVisualItr;
+		}
+
+		// Free bet visual objects
+		for( BetVisualList::iterator betVisualItr = m_betVisuals.begin();
+			 betVisualItr != m_betVisuals.end(); ++betVisualItr )
+		{
+			delete *betVisualItr;
 		}
 	}
 

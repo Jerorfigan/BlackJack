@@ -77,16 +77,18 @@ namespace BlackJack
 		inpData.prompt = "What would you like to do?";
 
 		inpData.choices.push_back( "Hit" );
-		inpData.choices.push_back( "Double" );
-		if( m_hands[ handIndex ].CanSplit() ) 
+		if( CanDouble( handIndex ) )
+			inpData.choices.push_back( "Double" );
+		if( CanSplit() ) 
 			inpData.choices.push_back( "Split" );
 		inpData.choices.push_back( "Stand" );
 		if( m_hands[ handIndex ].CanSurrender() ) 
 			inpData.choices.push_back( "Surrender" );
 
 		inpData.hotKeys.push_back( 'h' );
-		inpData.hotKeys.push_back( 'd' );
-		if( m_hands[ handIndex ].CanSplit() ) 
+		if( CanDouble( handIndex ) )
+			inpData.hotKeys.push_back( 'd' );
+		if( CanSplit() ) 
 			inpData.hotKeys.push_back( 's' );
 		inpData.hotKeys.push_back( 'a' );
 		if( m_hands[ handIndex ].CanSurrender() ) 

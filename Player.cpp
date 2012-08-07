@@ -36,6 +36,7 @@ namespace BlackJack
 	void		  
 	Player::DoubleBet( uint handIndex )
 	{
+		m_chips -= m_currentBets[ handIndex ];
 		m_currentBets[ handIndex ] *= 2;
 	}
 

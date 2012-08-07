@@ -8,8 +8,8 @@ namespace BlackJack
 	/***************/
 	/* Static Data */
 	/***************/
-	const GameUtilities::Point2D    DealerVisual::m_holeCardPos( 540, 175 );
-	const GameUtilities::Point2D    DealerVisual::m_dealerHandPos( 740, 175 );
+	const GameUtilities::Point2D    DealerVisual::m_holeCardPos( 540, 125 );
+	const GameUtilities::Point2D    DealerVisual::m_dealerHandPos( 740, 125 );
 
 	/****************/
 	/* Constructors */

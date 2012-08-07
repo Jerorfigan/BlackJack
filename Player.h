@@ -40,6 +40,8 @@ namespace BlackJack
 		uint		  GetNumHands() const;
 		uint		  GetHandValue( uint handIndex ) const;
 		bool		  CanPlay( uint handIndex ) const;
+		bool          CanSplit() const;
+		bool          CanDouble( uint handIndex ) const;
 		bool		  HasBlackJack( uint handIndex ) const;
 		uint          GetChips() const;
 
@@ -120,6 +122,24 @@ namespace BlackJack
 		m_hands[ handIndex ].GetValue( value );
 
 		return ( m_handStatuses[ handIndex ] == Hit || m_handStatuses[ handIndex ] == Split ) && value < 21;
+	}
+
+	//////////////
+	// CanSplit //
+	//////////////
+	inline bool          
+	Player::CanSplit() const
+	{
+		return ( m_chips >= m_currentBets[0] && m_hands[0].CanSplit() );
+	}
+
+	///////////////
+	// CanDouble //
+	///////////////
+	inline bool          
+	Player::CanDouble( uint handIndex ) const
+	{
+		return ( m_chips >= m_currentBets[handIndex] );
 	}
 
 	//////////////////

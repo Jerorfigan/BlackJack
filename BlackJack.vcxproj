@@ -94,6 +94,7 @@
     <ClInclude Include="Hand.h" />
     <ClInclude Include="HandVisual.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerBetVisual.h" />
     <ClInclude Include="PlayerConfiguration.h" />
     <ClInclude Include="PlayerHUD.h" />
     <ClInclude Include="PlayerPrompt.h" />
@@ -130,6 +131,7 @@
     <ClCompile Include="HandVisual.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="GameInput.cpp" />
+    <ClCompile Include="PlayerBetVisual.cpp" />
     <ClCompile Include="PlayerHUD.cpp" />
     <ClCompile Include="PlayerPrompt.cpp" />
     <ClCompile Include="PlayerVisual.cpp" />
